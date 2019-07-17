@@ -7,34 +7,24 @@ namespace Medium
     {
         static void Main(string[] args)
         {
+            int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
+
             Console.WriteLine("Hello World!");
         }
 
         static int FindLength(int[] A, int[] B)
         {
-            Dictionary<int, int> dictionaryA = new Dictionary<int, int>();
-            int maxLength = 0;
-            int currentLength = 0;
-            int indexInA = 0;
+            int answear = 0;
             for (int i = 0; i < A.Length; i++)
             {
-                dictionaryA.Add(A[i], i);
-            }
-            for (int i = 0; i < B.Length; i++)
-            {                
-                if (!dictionaryA.ContainsKey(B[i]))
+                for (int j = 0; j < B.Length; j++)
                 {
-                    currentLength = 0;
-                    continue;
-                }      
-                indexInA = 
-                if (currentLength == 0)
-                {
-                    currentLength++;
-                    continue;
+                    int currentLength = 0;
+                    while (A[i + currentLength] == B[i + currentLength])
+                        answear = Math.Max(answear, currentLength);
                 }
-
             }
+            return answear;
         }
     }
 }

@@ -54,8 +54,9 @@ namespace Medium
                         //    startStop[1] = currentLength - 1;
                         //    answear = currentLength;
                         //}
-                        answear = Math.Max(answear, currentLength);
+                        
                     }
+                    answear = Math.Max(answear, currentLength);
                 }                               
             }
             return answear;

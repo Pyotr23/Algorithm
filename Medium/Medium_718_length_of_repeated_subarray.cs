@@ -55,11 +55,8 @@ namespace Medium
                     }
                     delta = Math.Max(delta, currentLength);
                     answear = Math.Max(answear, currentLength);
-                    //indexesList.RemoveAt(0);
-                }
-                
+                }                
                 i += delta > 1 ? delta - 1 : 1;
-                //dictionaryB.Remove(A[i]);                                        
             }
             return answear;
         }

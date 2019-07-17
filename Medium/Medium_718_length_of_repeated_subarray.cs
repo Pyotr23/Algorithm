@@ -34,14 +34,18 @@ namespace Medium
                 }                    
             }
 
-            for (int i = 0; i < A.Length; i++)
+            for (int i = 0; i < A.Length;)
             {
                 if (!dictionaryB.ContainsKey(A[i]))
-                    continue;
-                List<int> indexesList = dictionaryB[A[i]];
-                while (indexesList.Count != 0)
                 {
-                    int startIndexInB = indexesList[0];
+                    i++;
+                    continue;
+                }
+                int delta = 0;   
+                List<int> indexesList = dictionaryB[A[i]];
+                for (int j = 0; j < indexesList.Count; j++)
+                {
+                    int startIndexInB = indexesList[j];
                     int currentLength = 0;
                     while (((i + currentLength) < A.Length)
                         && ((startIndexInB + currentLength) < B.Length)
@@ -49,10 +53,13 @@ namespace Medium
                     {
                         currentLength++;
                     }
+                    delta = Math.Max(delta, currentLength);
                     answear = Math.Max(answear, currentLength);
-                    indexesList.RemoveAt(0);
+                    //indexesList.RemoveAt(0);
                 }
-                dictionaryB.Remove(A[i]);                                        
+                
+                i += delta > 1 ? delta - 1 : 1;
+                //dictionaryB.Remove(A[i]);                                        
             }
             return answear;
         }

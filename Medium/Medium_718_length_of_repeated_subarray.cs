@@ -9,8 +9,8 @@ namespace Medium
         {
             //int[] firstArray = new int[] { 1, 0, 1, 0, 0, 0, 0, 0, 1, 1 };
             //int[] secondArray = new int[] { 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 };
-            int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
-            int[] secondArray = new int[] { 3, 2, 1, 4, 7 };
+            //int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
+            //int[] secondArray = new int[] { 3, 2, 1, 4, 7 };
             //int[] firstArray = new int[] { 3, 2, 4, 2, 5, 8 };
             //int[] secondArray = new int[] { 8, 5, 2, 5, 8 };       
             //int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -33,12 +33,55 @@ namespace Medium
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
+            int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 };
+            int[] secondArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 };            
             int answear = FindLength(firstArray, secondArray);
             Console.WriteLine(answear);
             Console.ReadKey();
         }
 
         static int FindLength(int[] A, int[] B)
+        {            
+            Dictionary<int, List<int>> dictionaryB = new Dictionary<int, List<int>>();
+            for (int i = 0; i < B.Length; i++)
+            {
+                if (!dictionaryB.ContainsKey(B[i]))
+                    dictionaryB.Add(B[i], new List<int> { i });
+                else
+                {
+                    List<int> currentList = dictionaryB[B[i]];
+                    currentList.Add(i);
+                    dictionaryB[B[i]] = currentList;
+                }
+            }
+
+            int answear = 0;
+            for (int i = 0; i < A.Length; i++)
+            {
+                if (dictionaryB.ContainsKey(A[i]))
+                {
+                    List<int> indexesList = dictionaryB[A[i]];
+                    for (int x = 0; x < indexesList.Count; x++)
+                    {                         
+                        for (int j = indexesList[x]; j < B.Length; j++)
+                        {
+                            int currentLength = 0;
+                            while (((i + currentLength) < A.Length)
+                                && ((j + currentLength) < B.Length)
+                                && (A[i + currentLength] == B[j + currentLength]))
+                            {
+                                currentLength++;
+                                answear = Math.Max(answear, currentLength);
+                            }
+                        }
+                    }
+                }                
+            }
+            return answear;
+        }
+
+        // потерпел фиаско
+        static int FindLengthBad(int[] A, int[] B)
         {
             int answear = 0;
             Dictionary<int, List<int>> dictionaryB = new Dictionary<int, List<int>>();
@@ -68,10 +111,6 @@ namespace Medium
                     shift = 1;
                     j++;
                 }
-            }
-            for (int i = 0; i < dictionaryB.Count; i++)
-            {
-                
             }
 
             for (int i = 0; i < A.Length; i++)

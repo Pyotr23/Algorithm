@@ -12,8 +12,8 @@ namespace Medium
             //int[] secondArray = new int[] { 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 };
             //int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
             //int[] secondArray = new int[] { 3, 2, 1, 4, 7 };
-            //int[] firstArray = new int[] { 3, 2, 4, 2, 5, 8 };
-            //int[] secondArray = new int[] { 8, 5, 2, 5, 8 };       
+            int[] firstArray = new int[] { 3, 2, 4, 2, 5, 8 };
+            int[] secondArray = new int[] { 8, 5, 2, 5, 8 };
             //int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -34,8 +34,8 @@ namespace Medium
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
-            int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 };
-            int[] secondArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 };            
+            //int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 };
+            //int[] secondArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 };            
             int answear = FindLength(firstArray, secondArray);
             Console.WriteLine(answear);
             Console.ReadKey();
@@ -43,7 +43,17 @@ namespace Medium
 
         static int FindLength(int[] A, int[] B)
         {
-
+            int lo = 0;
+            int hi = Math.Min(A.Length, B.Length) + 1;
+            while (lo < hi)
+            {
+                int middle = (lo + hi) / 2;
+                if (Check(middle, A, B))
+                    lo = middle + 1;
+                else
+                    hi = middle;
+            }
+            return lo - 1;
         }
 
         static bool Check(int length, int[] A, int[] B)
@@ -51,14 +61,14 @@ namespace Medium
             HashSet<string> hashSet = new HashSet<string>();
             for (int i = 0; i + length <= A.Length; ++i)
             {
-                int[] subarray = A.Skip(i).Take(i + length).ToArray();                
+                int[] subarray = A.Skip(i).Take(length).ToArray();                
                 string arrayToString = string.Join("", subarray);
                 hashSet.Add(arrayToString);                
             }
 
             for (int j = 0; j + length <= B.Length; ++j)
             {
-                int[] subarray = A.Skip(j).Take(j + length).ToArray();
+                int[] subarray = B.Skip(j).Take(length).ToArray();
                 string bSubArraytoString = string.Join("", subarray);
                 if (hashSet.Contains(bSubArraytoString))
                     return true;

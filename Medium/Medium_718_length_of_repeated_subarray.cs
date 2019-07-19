@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Medium
 {
@@ -41,6 +42,31 @@ namespace Medium
         }
 
         static int FindLength(int[] A, int[] B)
+        {
+
+        }
+
+        static bool Check(int length, int[] A, int[] B)
+        {
+            HashSet<string> hashSet = new HashSet<string>();
+            for (int i = 0; i + length <= A.Length; ++i)
+            {
+                int[] subarray = A.Skip(i).Take(i + length).ToArray();                
+                string arrayToString = string.Join("", subarray);
+                hashSet.Add(arrayToString);                
+            }
+
+            for (int j = 0; j + length <= B.Length; ++j)
+            {
+                int[] subarray = A.Skip(j).Take(j + length).ToArray();
+                string bSubArraytoString = string.Join("", subarray);
+                if (hashSet.Contains(bSubArraytoString))
+                    return true;
+            }
+            return false;
+        }
+
+        static int FindLengthBruteForceWithHashTable(int[] A, int[] B)
         {            
             Dictionary<int, List<int>> dictionaryB = new Dictionary<int, List<int>>();
             for (int i = 0; i < B.Length; i++)

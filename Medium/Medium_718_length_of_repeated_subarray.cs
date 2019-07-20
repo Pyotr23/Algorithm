@@ -44,35 +44,65 @@ namespace Medium
             Console.ReadKey();
         }
 
-        //static int FindLength(int[] A, int[] B)
-        //{
-        //    int lo = 0;
-        //    int hi = Math.Min(A.Length, B.Length) + 1;
-        //    while (lo < hi)
-        //    {
-        //        int middle = (lo + hi) / 2;
-        //        if (RabinKarpCheck(middle, A, B))
-        //            lo = middle + 1;
-        //        else
-        //            hi = middle;
-        //    }
-        //    return lo - 1;
-        //}
+        static int FindLength(int[] A, int[] B)
+        {
+            int lo = 0;
+            int hi = Math.Min(A.Length, B.Length) + 1;
+            while (lo < hi)
+            {
+                int middle = (lo + hi) / 2;
+                if (RabinKarpCheck(middle, A, B))
+                    lo = middle + 1;
+                else
+                    hi = middle;
+            }
+            return lo - 1;
+        }
 
         static bool RabinKarpCheck(string array, string subArray)
         {            
             HashSet<string> hashArray = new HashSet<string>();            
             hashArray.Add(array.Substring(0, subArray.Length));
 
+            HashSet<string> hashSubArray = new HashSet<string>();
+            hashSubArray.Add(subArray);
+
             for (int i = 0; i < array.Length - subArray.Length + 1; i++)
             {
-                if (hashArray.Contains(subArray))
+                if (hashArray == hashSubArray)
                 {                    
                     return true;
                 }
+                hashArray.Clear();
                 hashArray.Add(array.Substring(i + 1, subArray.Length));
             }
             return false;           
+        }
+
+        static int[] rolling(int[] array, int length)
+        {
+            int x = 113;
+            int MOD = 1_000_000_007;
+            int Pinv = (int)((long)(Math.Pow(x, MOD - 2)) % MOD);
+
+            int[] rollingArray = new int[array.Length - length + 1];
+            long h = 0, power = 1;
+            if (length == 0)
+                return rollingArray;
+            for (int i = 0; i < array.Length; ++i)
+            {
+                h = (h + array[i] * power) % MOD;
+                if (i < length - 1)
+                    power = (power * x) % MOD;
+                else
+                {
+                    rollingArray[i - (length - 1)] = (int)h;
+                    h = (h - array[i - (length - 1)]) * Pinv % MOD;
+                    if (h < 0)
+                        h += MOD;
+                }
+            }
+            return rollingArray;
         }
 
         static string SubArrayToString(int[] array, int start, int length)

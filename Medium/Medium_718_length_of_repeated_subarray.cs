@@ -35,13 +35,53 @@ namespace Medium
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 1, 0, 0, 0, 0, 0, 0, 0 };
             //int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 };
-            //int[] secondArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 };            
-            int answear = FindLength(firstArray, secondArray);
-            Console.WriteLine(answear);
+            //int[] secondArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 }; 
+
+            //int answear = FindLength(firstArray, secondArray);
+            //Console.WriteLine(answear);
+
+            Console.WriteLine(RabinKarpCheck("324258", "258"));
             Console.ReadKey();
         }
 
-        static int FindLength(int[] A, int[] B)
+        //static int FindLength(int[] A, int[] B)
+        //{
+        //    int lo = 0;
+        //    int hi = Math.Min(A.Length, B.Length) + 1;
+        //    while (lo < hi)
+        //    {
+        //        int middle = (lo + hi) / 2;
+        //        if (RabinKarpCheck(middle, A, B))
+        //            lo = middle + 1;
+        //        else
+        //            hi = middle;
+        //    }
+        //    return lo - 1;
+        //}
+
+        static bool RabinKarpCheck(string array, string subArray)
+        {            
+            HashSet<string> hashArray = new HashSet<string>();            
+            hashArray.Add(array.Substring(0, subArray.Length));
+
+            for (int i = 0; i < array.Length - subArray.Length + 1; i++)
+            {
+                if (hashArray.Contains(subArray))
+                {                    
+                    return true;
+                }
+                hashArray.Add(array.Substring(i + 1, subArray.Length));
+            }
+            return false;           
+        }
+
+        static string SubArrayToString(int[] array, int start, int length)
+        {
+            int[] subarray = array.Skip(start).Take(length).ToArray();
+            return string.Join("", subarray);
+        }
+
+        static int FindLengthDP(int[] A, int[] B)
         {
             int ans = 0;
             int[,] memo = new int[A.Length + 1, B.Length + 1];

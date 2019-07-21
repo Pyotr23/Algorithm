@@ -81,8 +81,8 @@ namespace Medium
 
         static int[] rolling(int[] array, int length)
         {
-            int x = 113;
-            int MOD = 1_000_000_007;
+            int x = 113; 
+            long q = 1000000007;
             int Pinv = (int)((long)(Math.Pow(x, MOD - 2)) % MOD);
 
             int[] rollingArray = new int[array.Length - length + 1];

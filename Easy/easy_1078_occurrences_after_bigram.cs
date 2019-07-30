@@ -5,14 +5,14 @@ namespace Easy
 {
     class Easy_1078_occurrences_after_bigram
     {
-        static void Main(string[] args)
-        {
-            string inputString = "alice is a good girl she is a good student";
-            string[] otvet = FindOcurrences(inputString, "a", "good");
-            foreach (var x in otvet)
-                Console.WriteLine(x);
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    string inputString = "alice is a good girl she is a good student";
+        //    string[] otvet = FindOcurrences(inputString, "a", "good");
+        //    foreach (var x in otvet)
+        //        Console.WriteLine(x);
+        //    Console.ReadKey();
+        //}
 
         private static string[] FindOcurrences(string text, string first, string second)
         {            

@@ -8,13 +8,20 @@ namespace Easy
     {
         static void Main(string[] args)
         {
-            
+            int[] array = { 0, 2, 1, 0 };
+            Console.WriteLine(PeakIndexInMountainArray(array));
             Console.ReadKey();
         }
 
         public static int PeakIndexInMountainArray(int[] A)
         {
-
+            int i = 0;
+            for (; i < A.Length; i++)
+            {
+                if (A[i] > A[i + 1])
+                    return i;
+            }
+            return i;
         }
     }
 }

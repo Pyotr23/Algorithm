@@ -10,10 +10,10 @@ namespace Medium
         {
             //int[] firstArray = new int[] { 1, 0, 1, 0, 0, 0, 0, 0, 1, 1 };
             //int[] secondArray = new int[] { 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 };
-            //int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
-            //int[] secondArray = new int[] { 3, 2, 1, 4, 7 };
-            int[] firstArray = new int[] { 3, 2, 4, 2, 5, 8 };
-            int[] secondArray = new int[] { 8, 5, 2, 5, 8 };
+            int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
+            int[] secondArray = new int[] { 3, 2, 1, 4, 7 };
+            //int[] firstArray = new int[] { 3, 2, 4, 2, 5, 8 };
+            //int[] secondArray = new int[] { 8, 5, 2, 5, 8 };
             //int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             //    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -40,76 +40,76 @@ namespace Medium
             //int answear = FindLength(firstArray, secondArray);
             //Console.WriteLine(answear);
 
-            Console.WriteLine(RabinKarpCheck("324258", "258"));
+            Console.WriteLine(FindLengthBinarySearch(firstArray, secondArray));
             Console.ReadKey();
         }
 
-        static int FindLength(int[] A, int[] B)
-        {
-            int lo = 0;
-            int hi = Math.Min(A.Length, B.Length) + 1;
-            while (lo < hi)
-            {
-                int middle = (lo + hi) / 2;
-                if (RabinKarpCheck(middle, A, B))
-                    lo = middle + 1;
-                else
-                    hi = middle;
-            }
-            return lo - 1;
-        }
+        //static int FindLength(int[] A, int[] B)
+        //{
+        //    int lo = 0;
+        //    int hi = Math.Min(A.Length, B.Length) + 1;
+        //    while (lo < hi)
+        //    {
+        //        int middle = (lo + hi) / 2;
+        //        if (RabinKarpCheck(middle, A, B))
+        //            lo = middle + 1;
+        //        else
+        //            hi = middle;
+        //    }
+        //    return lo - 1;
+        //}
 
-        static bool RabinKarpCheck(string array, string subArray)
-        {            
-            HashSet<string> hashArray = new HashSet<string>();            
-            hashArray.Add(array.Substring(0, subArray.Length));
+        //static bool RabinKarpCheck(string array, string subArray)
+        //{            
+        //    HashSet<string> hashArray = new HashSet<string>();            
+        //    hashArray.Add(array.Substring(0, subArray.Length));
 
-            HashSet<string> hashSubArray = new HashSet<string>();
-            hashSubArray.Add(subArray);
+        //    HashSet<string> hashSubArray = new HashSet<string>();
+        //    hashSubArray.Add(subArray);
 
-            for (int i = 0; i < array.Length - subArray.Length + 1; i++)
-            {
-                if (hashArray == hashSubArray)
-                {                    
-                    return true;
-                }
-                hashArray.Clear();
-                hashArray.Add(array.Substring(i + 1, subArray.Length));
-            }
-            return false;           
-        }
+        //    for (int i = 0; i < array.Length - subArray.Length + 1; i++)
+        //    {
+        //        if (hashArray == hashSubArray)
+        //        {                    
+        //            return true;
+        //        }
+        //        hashArray.Clear();
+        //        hashArray.Add(array.Substring(i + 1, subArray.Length));
+        //    }
+        //    return false;           
+        //}
 
-        static int[] rolling(int[] array, int length)
-        {
-            int x = 113; 
-            long q = 1000000007;
-            int Pinv = (int)((long)(Math.Pow(x, MOD - 2)) % MOD);
+        //static int[] rolling(int[] array, int length)
+        //{
+        //    int x = 113; 
+        //    long q = 1000000007;
+        //    int Pinv = (int)((long)(Math.Pow(x, MOD - 2)) % MOD);
 
-            int[] rollingArray = new int[array.Length - length + 1];
-            long h = 0, power = 1;
-            if (length == 0)
-                return rollingArray;
-            for (int i = 0; i < array.Length; ++i)
-            {
-                h = (h + array[i] * power) % MOD;
-                if (i < length - 1)
-                    power = (power * x) % MOD;
-                else
-                {
-                    rollingArray[i - (length - 1)] = (int)h;
-                    h = (h - array[i - (length - 1)]) * Pinv % MOD;
-                    if (h < 0)
-                        h += MOD;
-                }
-            }
-            return rollingArray;
-        }
+        //    int[] rollingArray = new int[array.Length - length + 1];
+        //    long h = 0, power = 1;
+        //    if (length == 0)
+        //        return rollingArray;
+        //    for (int i = 0; i < array.Length; ++i)
+        //    {
+        //        h = (h + array[i] * power) % MOD;
+        //        if (i < length - 1)
+        //            power = (power * x) % MOD;
+        //        else
+        //        {
+        //            rollingArray[i - (length - 1)] = (int)h;
+        //            h = (h - array[i - (length - 1)]) * Pinv % MOD;
+        //            if (h < 0)
+        //                h += MOD;
+        //        }
+        //    }
+        //    return rollingArray;
+        //}
 
-        static string SubArrayToString(int[] array, int start, int length)
-        {
-            int[] subarray = array.Skip(start).Take(length).ToArray();
-            return string.Join("", subarray);
-        }
+        //static string SubArrayToString(int[] array, int start, int length)
+        //{
+        //    int[] subarray = array.Skip(start).Take(length).ToArray();
+        //    return string.Join("", subarray);
+        //}
 
         static int FindLengthDP(int[] A, int[] B)
         {

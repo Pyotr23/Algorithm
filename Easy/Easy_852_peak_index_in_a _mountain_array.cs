@@ -6,12 +6,12 @@ namespace Easy
 {
     class Easy_852_peak_index_in_a__mountain_array
     {
-        static void Main(string[] args)
-        {
-            int[] array = { 3, 4, 5, 1 };
-            Console.WriteLine(PeakIndexInMountainArray(array));
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    int[] array = { 3, 4, 5, 1 };
+        //    Console.WriteLine(PeakIndexInMountainArray(array));
+        //    Console.ReadKey();
+        //}
 
         public static int PeakIndexInMountainArray(int[] A)
         {            

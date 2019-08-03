@@ -24,18 +24,13 @@ namespace Easy
                 {
                     if (A[middleIndex] > A[middleIndex + 1])
                         return middleIndex;
-                    else
-                    {
-                        startIndex = middleIndex;
-                        middleIndex = middleIndex + (endIndex - startIndex) / 2;
-                    }
-
+                    startIndex = middleIndex;
+                    middleIndex += (endIndex - startIndex) / 2;
+                    continue;
                 }
-                else
-                {
-                    endIndex = middleIndex;
-                    middleIndex = middleIndex - (endIndex - startIndex) / 2;
-                }                                 
+                endIndex = middleIndex;
+                middleIndex -= (endIndex - startIndex) / 2;
+                continue;
             }            
         }
 

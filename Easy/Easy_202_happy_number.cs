@@ -8,14 +8,29 @@ namespace Easy
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(IsHappy(18));
+            Console.WriteLine(IsHappy(10));
             Console.ReadKey();
         }
 
         private static bool IsHappy(int n)
         {
+            int slow = n;
+            int fast = n;
+            do
+            {
+                slow = GetSquaresSum(slow);
+                if (slow == 1)
+                    return true;
+                fast = GetSquaresSum(GetSquaresSum(fast));
+            }
+            while (slow != fast);
+            return false;           
+        }
+
+        private static bool IsHappyHash(int n)
+        {
             var hashSet = new HashSet<int>() { n };
-            int squaresSum = 0;
+            int squaresSum = n;
             while (squaresSum != 1)
             {
                 squaresSum = GetSquaresSum(n);
@@ -31,12 +46,10 @@ namespace Easy
         {
             string stringNumber = number.ToString();
             int result = 0;
-            int tenDegree = 0;
-            int digit = 0;
             for (int i = stringNumber.Length - 1; i >= 0; i--)
             {
-                tenDegree = (int)Math.Pow(10, i);
-                digit = number / tenDegree;
+                int tenDegree = (int)Math.Pow(10, i);
+                int digit = number / tenDegree;
                 result += (int)Math.Pow(digit, 2);
                 number %= tenDegree;
             }

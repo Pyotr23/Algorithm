@@ -6,11 +6,11 @@ namespace Easy
 {
     class Easy_202_happy_number
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine(IsHappy(10));
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    Console.WriteLine(IsHappy(10));
+        //    Console.ReadKey();
+        //}
 
         private static bool IsHappy(int n)
         {

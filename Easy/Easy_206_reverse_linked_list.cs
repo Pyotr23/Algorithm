@@ -27,7 +27,36 @@ namespace Easy
                     }
                 }
             };
+            ListNode list = ReverseList(listNode);
+            Console.WriteLine();
+            PrintList(list);
             Console.ReadKey();
         }
-    }      
+
+        public static ListNode ReverseList(ListNode head)
+        {
+            ListNode temp = null;
+            ListNode reverseList = null;
+            while (head != null)
+            {
+                temp = head;
+                Console.Write($"{head.val} -> ");
+                head = head.next;
+                temp.next = reverseList;
+                reverseList = temp;                   
+            }
+            return reverseList;
+        }
+
+        static void PrintList(ListNode head)
+        {            
+            while (head != null)
+            {
+                Console.Write($"{head.val} -> ");
+                head = head.next;
+            }
+        }
+    }   
+    
+
 }

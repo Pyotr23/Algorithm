@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Easy
 {
@@ -14,7 +15,12 @@ namespace Easy
 
         public static bool IsPalindrome(string s)
         {
-
+            string lowerS = s.ToLower();
+            Regex regex = new Regex("[a-z]");
+            string modernS = regex.Matches(lowerS).ToString();
+            char start;
+            char finish;
+            int length = s.Length
         }
     }
 }

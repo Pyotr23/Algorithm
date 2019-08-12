@@ -6,24 +6,24 @@ namespace Easy
 {    
     class Easy_234_palindrome_linked_list
     {
-        static void Main(string[] args)
-        {
-            var listNode = new ListNode(1)
-            {
-                next = new ListNode(2)
-                {
-                    //next = new ListNode(2)
-                    //{
-                        next = new ListNode(1)
-                        //{
-                        //    next = new ListNode(5)
-                        //}
-                    //}
-                }
-            };
-            Console.WriteLine(IsPalindrome(listNode));
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    var listNode = new ListNode(1)
+        //    {
+        //        next = new ListNode(2)
+        //        {
+        //            //next = new ListNode(2)
+        //            //{
+        //                next = new ListNode(1)
+        //                //{
+        //                //    next = new ListNode(5)
+        //                //}
+        //            //}
+        //        }
+        //    };
+        //    Console.WriteLine(IsPalindrome(listNode));
+        //    Console.ReadKey();
+        //}
 
         public static bool IsPalindrome(ListNode head)
         {

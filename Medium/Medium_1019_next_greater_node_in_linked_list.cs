@@ -15,23 +15,23 @@ namespace Medium
     {
         static void Main(string[] args)
         {
-            var listNode = new ListNode(1)
+            var listNode = new ListNode(9)
             {
                 next = new ListNode(7)
                 {
-                    next = new ListNode(5)
+                    next = new ListNode(6)
                     {
-                        next = new ListNode(1)
+                        next = new ListNode(7)
                         {
-                            next = new ListNode(9)
+                            next = new ListNode(6)
                             {
-                                next = new ListNode(2)
-                                {
-                                    next = new ListNode(5)
-                                    {
-                                        next = new ListNode(1)
-                                    }
-                                }
+                                next = new ListNode(9)
+                                //{
+                                //    next = new ListNode(5)
+                                //    {
+                                //        next = new ListNode(1)
+                                //    }
+                                //}
                             }
                         }
                     }
@@ -44,6 +44,33 @@ namespace Medium
         }
 
         private static int[] NextLargerNodes(ListNode head)
+        {
+            List<int> answearList = new List<int>();
+            int prevHeadValue = 0;
+            while (head != null)
+            {
+                var currentList = head;
+                int max = 0;
+                int first = currentList.val;
+                if (max == 0 || max == first || (first < prevHeadValue && prevHeadValue < max))
+                {
+                    while (currentList != null)
+                    {
+                        if (currentList.val > first)
+                        {
+                            max = currentList.val;
+                            break;
+                        }
+                        currentList = currentList.next;
+                    }
+                }                
+                head = head.next;
+                answearList.Add(max == first ? 0 : max);
+            }
+            return answearList.ToArray();
+        }
+
+        private static int[] NextLargerNodesMemory(ListNode head)
         {
             List<int> answearList = new List<int>();
             while (head != null)

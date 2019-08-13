@@ -37,7 +37,9 @@ namespace Medium
                     }
                 }
             };
-            NextLargerNodes(listNode);
+            int[] array = NextLargerNodes(listNode);
+            foreach(var x in array)
+                Console.Write(x);
             Console.ReadKey();            
         }
 
@@ -48,13 +50,18 @@ namespace Medium
             {
                 var currentList = head;
                 int max = 0;
+                int first = currentList.val;
                 while (currentList != null)
                 {
-                    max = Math.Max(max, currentList.val);
+                    if (currentList.val > first)
+                    {
+                        max = currentList.val;
+                        break;
+                    }
                     currentList = currentList.next;
                 }
                 head = head.next;
-                answearList.Add(max);
+                answearList.Add(max == first ? 0 : max);
             }
             return answearList.ToArray();
         }

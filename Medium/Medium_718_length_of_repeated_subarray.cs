@@ -6,12 +6,12 @@ namespace Medium
 {
     class Medium_718_length_of_repeated_subarray
     {
-        static void Main(string[] args)
-        {
+        //static void Main(string[] args)
+        //{
             //int[] firstArray = new int[] { 1, 0, 1, 0, 0, 0, 0, 0, 1, 1 };
             //int[] secondArray = new int[] { 1, 1, 0, 1, 1, 0, 0, 0, 0, 0 };
-            int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
-            int[] secondArray = new int[] { 3, 2, 1, 4, 7 };
+            //int[] firstArray = new int[] { 1, 2, 3, 2, 1 };
+            //int[] secondArray = new int[] { 3, 2, 1, 4, 7 };
             //int[] firstArray = new int[] { 3, 2, 4, 2, 5, 8 };
             //int[] secondArray = new int[] { 8, 5, 2, 5, 8 };
             //int[] firstArray = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -40,9 +40,9 @@ namespace Medium
             //int answear = FindLength(firstArray, secondArray);
             //Console.WriteLine(answear);
 
-            Console.WriteLine(FindLengthBinarySearch(firstArray, secondArray));
-            Console.ReadKey();
-        }
+            //Console.WriteLine(FindLengthBinarySearch(firstArray, secondArray));
+            //Console.ReadKey();
+        //}
 
         //static int FindLength(int[] A, int[] B)
         //{

@@ -47,25 +47,27 @@ namespace Medium
         {
             List<int> answearList = new List<int>();
             int prevHeadValue = 0;
+            int nextMax = 0;
             while (head != null)
             {
                 var currentList = head;
-                int max = 0;
+                int localMax = 0;
                 int first = currentList.val;
-                if (max == 0 || max == first || (first < prevHeadValue && prevHeadValue < max))
+                if (localMax == 0 || localMax == first)
                 {
                     while (currentList != null)
                     {
                         if (currentList.val > first)
                         {
-                            max = currentList.val;
+                            localMax = currentList.val;
                             break;
                         }
+                        //if (currentList.next != null && currentList.next.val )
                         currentList = currentList.next;
                     }
                 }                
                 head = head.next;
-                answearList.Add(max == first ? 0 : max);
+                answearList.Add(localMax == first ? 0 : localMax);
             }
             return answearList.ToArray();
         }

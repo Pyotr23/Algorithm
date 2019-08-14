@@ -137,5 +137,29 @@ namespace Medium
             }
             return answearList.ToArray();
         }
+
+        private static ListNode GetListNode(int[] array)
+        {
+            ListNode listNode = null;
+            for (int i = array.Length - 1; i >= 0; i--)
+            {
+                ListNode tempListNode = new ListNode(array[i])
+                {
+                    next = listNode
+                };
+                listNode = tempListNode;
+            }
+            return listNode;
+        }
+
+        private static void PrintListNode(ListNode listNode)
+        {
+            var tempListNode = listNode;
+            while (tempListNode != null)
+            {
+                Console.Write($"{tempListNode.val} -> ");
+                tempListNode = tempListNode.next;
+            }
+        }
     }
 }

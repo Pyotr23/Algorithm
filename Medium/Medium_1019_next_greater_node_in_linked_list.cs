@@ -70,6 +70,26 @@ namespace Medium
             return queue;
         }
 
+        private static ListNode GetListNode(ListNode lNode)
+        {
+            var tempListNode = lNode;
+            ListNode answear = null;
+            while (tempListNode.next != null && tempListNode.next.next != null)
+            {
+                if (tempListNode.next.val > tempListNode.val)
+                {
+                    if (answear != null)
+                    {
+                        answear.next = tempListNode.next;
+                    }
+                    else
+                        answear.val = tempListNode.next.val;
+                }
+                    
+                tempListNode = tempListNode.next;
+            }
+        }
+
         private static int[] NextLargerNodes(ListNode head)
         {
             List<int> answearList = new List<int>();
@@ -78,16 +98,17 @@ namespace Medium
             {
                 var currentList = head;
                 int max = 0;
-                int first = currentList.val;
-                while (currentList != null)
-                {
-                    if (currentList.val > first)
-                    {
-                        max = currentList.val;
-                        break;
-                    }
-                    currentList = currentList.next;
-                }
+
+                //int first = currentList.val;
+                //while (currentList != null)
+                //{
+                //    if (currentList.val > first)
+                //    {
+                //        max = currentList.val;
+                //        break;
+                //    }
+                //    currentList = currentList.next;
+                //}
                 head = head.next;
                 answearList.Add(max == first ? 0 : max);
             }

@@ -73,28 +73,23 @@ namespace Medium
         private static int[] NextLargerNodes(ListNode head)
         {
             List<int> answearList = new List<int>();
-            int prevHeadValue = 0;
-            int nextMax = 0;
+            var queue = GetQueue(head);
             while (head != null)
             {
                 var currentList = head;
-                int localMax = 0;
+                int max = 0;
                 int first = currentList.val;
-                if (localMax == 0 || localMax == first)
+                while (currentList != null)
                 {
-                    while (currentList != null)
+                    if (currentList.val > first)
                     {
-                        if (currentList.val > first)
-                        {
-                            localMax = currentList.val;
-                            break;
-                        }
-                        //if (currentList.next != null && currentList.next.val )
-                        currentList = currentList.next;
+                        max = currentList.val;
+                        break;
                     }
-                }                
+                    currentList = currentList.next;
+                }
                 head = head.next;
-                answearList.Add(localMax == first ? 0 : localMax);
+                answearList.Add(max == first ? 0 : max);
             }
             return answearList.ToArray();
         }

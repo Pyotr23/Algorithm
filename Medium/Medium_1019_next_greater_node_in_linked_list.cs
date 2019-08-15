@@ -46,14 +46,8 @@ namespace Medium
                     }
                 }
             };
-            //int[] array = NextLargerNodes(listNode);
-            //foreach(var x in array)
-            //    Console.Write(x);
-            var myStack = GetQueue(listNode);
-            while (myStack.Count != 0)
-            {
-                Console.Write($"{myStack.Dequeue()} ");
-            }
+            var bigValueListNode = GetListNode(listNode);
+            PrintListNode(bigValueListNode);
             Console.ReadKey();            
         }
 
@@ -73,48 +67,17 @@ namespace Medium
         private static ListNode GetListNode(ListNode lNode)
         {
             var tempListNode = lNode;
-            ListNode answear = null;
+            var nodesList = new List<int>();
             while (tempListNode.next != null && tempListNode.next.next != null)
             {
                 if (tempListNode.next.val > tempListNode.val)
-                {
-                    if (answear != null)
-                    {
-                        answear.next = tempListNode.next;
-                    }
-                    else
-                        answear.val = tempListNode.next.val;
-                }
-                    
+                    nodesList.Add(tempListNode.next.val);
                 tempListNode = tempListNode.next;
             }
-        }
+            return GetListNode(nodesList);
+        }        
 
-        private static int[] NextLargerNodes(ListNode head)
-        {
-            List<int> answearList = new List<int>();
-            var queue = GetQueue(head);
-            while (head != null)
-            {
-                var currentList = head;
-                int max = 0;
-
-                //int first = currentList.val;
-                //while (currentList != null)
-                //{
-                //    if (currentList.val > first)
-                //    {
-                //        max = currentList.val;
-                //        break;
-                //    }
-                //    currentList = currentList.next;
-                //}
-                head = head.next;
-                answearList.Add(max == first ? 0 : max);
-            }
-            return answearList.ToArray();
-        }
-
+        // Решение с минимальным использованием памяти, но очень медленное
         private static int[] NextLargerNodesMemory(ListNode head)
         {
             List<int> answearList = new List<int>();
@@ -136,6 +99,20 @@ namespace Medium
                 answearList.Add(max == first ? 0 : max);
             }
             return answearList.ToArray();
+        }
+
+        private static ListNode GetListNode(List<int> list)
+        {
+            ListNode listNode = null;
+            for (int i = list.Count - 1; i >= 0; i--)
+            {
+                ListNode tempListNode = new ListNode(list[i])
+                {
+                    next = listNode
+                };
+                listNode = tempListNode;
+            }
+            return listNode;
         }
 
         private static ListNode GetListNode(int[] array)

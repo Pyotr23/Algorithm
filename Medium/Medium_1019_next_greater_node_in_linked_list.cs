@@ -46,22 +46,38 @@ namespace Medium
                     }
                 }
             };
-            var bigValueListNode = GetListNode(listNode);
-            PrintListNode(bigValueListNode);
+            int[] answear = NextLargerNodes(listNode);
+            foreach(var x in answear)
+                Console.Write($"{x} ");
             Console.ReadKey();            
         }
 
-        private static Queue<int> GetQueue(ListNode lNode)
+        private static int[] NextLargerNodes(ListNode head)
         {
-            var tempListNode = lNode;
-            var queue = new Queue<int>();           
-            while (tempListNode.next != null && tempListNode.next.next != null)
-            {
-                if (tempListNode.next.val > tempListNode.val)
-                    queue.Enqueue(tempListNode.next.val);
-                tempListNode = tempListNode.next;
+            List<int> answearList = new List<int>();
+            var increasingListNode = GetListNode(head);
+            while (head != null)
+            {                
+                int max = 0;
+                if (increasingListNode != null)
+                {
+                    if (increasingListNode.val == head.val)
+                        increasingListNode = increasingListNode.next;
+                    var currentIncreasing = increasingListNode;
+                    while (currentIncreasing != null)
+                    {
+                        if (currentIncreasing.val > head.val)
+                        {
+                            max = currentIncreasing.val;
+                            break;
+                        }
+                        currentIncreasing = currentIncreasing.next;
+                    }
+                }                
+                head = head.next;
+                answearList.Add(max);
             }
-            return queue;
+            return answearList.ToArray();
         }
 
         private static ListNode GetListNode(ListNode lNode)

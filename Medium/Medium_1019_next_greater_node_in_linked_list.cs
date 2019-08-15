@@ -15,37 +15,38 @@ namespace Medium
     {
         static void Main(string[] args)
         {
-            var listNode = new ListNode(10)
-            {
-                next = new ListNode(8)
-                {
-                    next = new ListNode(6)
-                    {
-                        next = new ListNode(4)
-                        {
-                            next = new ListNode(2)
-                            {
-                                next = new ListNode(3)
-                                {
-                                    next = new ListNode(4)
-                                    {
-                                        next = new ListNode(5)
-                                        {
-                                            next = new ListNode(4)
-                                            {
-                                                next = new ListNode(3)
-                                                {
-                                                    next = new ListNode(2)
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            };
+            //var listNode = new ListNode(10)
+            //{
+            //    next = new ListNode(8)
+            //    {
+            //        next = new ListNode(6)
+            //        {
+            //            next = new ListNode(4)
+            //            {
+            //                next = new ListNode(2)
+            //                {
+            //                    next = new ListNode(3)
+            //                    {
+            //                        next = new ListNode(4)
+            //                        {
+            //                            next = new ListNode(5)
+            //                            {
+            //                                next = new ListNode(4)
+            //                                {
+            //                                    next = new ListNode(3)
+            //                                    {
+            //                                        next = new ListNode(2)
+            //                                    }
+            //                                }
+            //                            }
+            //                        }
+            //                    }
+            //                }
+            //            }
+            //        }
+            //    }
+            //};
+            var listNode = GetListNode(new List<int>() { 5, 2, 5 });
             int[] answear = NextLargerNodes(listNode);
             foreach(var x in answear)
                 Console.Write($"{x} ");
@@ -84,7 +85,7 @@ namespace Medium
         {
             var tempListNode = lNode;
             var nodesList = new List<int>();
-            while (tempListNode.next != null && tempListNode.next.next != null)
+            while (tempListNode.next != null)
             {
                 if (tempListNode.next.val > tempListNode.val)
                     nodesList.Add(tempListNode.next.val);

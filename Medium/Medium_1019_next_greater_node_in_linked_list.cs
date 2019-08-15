@@ -46,7 +46,7 @@ namespace Medium
             //        }
             //    }
             //};
-            var listNode = GetListNode(new List<int>() { 2, 7, 5, 4, 3, 5 });
+            var listNode = GetListNode(new List<int>() { 2, 7, 4, 3, 5 });
             int[] answear = NextLargerNodes(listNode);
             foreach(var x in answear)
                 Console.Write($"{x} ");
@@ -57,12 +57,13 @@ namespace Medium
         {
             List<int> answearList = new List<int>();
             var increasingListNode = GetListNode(head);
+            int prev = int.MaxValue;
             while (head != null)
             {                
                 int max = 0;
                 if (increasingListNode != null)
                 {
-                    if (increasingListNode.val == head.val && increasingListNode?.next?.val == head?.next?.val)
+                    if (increasingListNode.val == head.val && increasingListNode.val > prev)
                         increasingListNode = increasingListNode.next;
                     var currentIncreasing = increasingListNode;
                     while (currentIncreasing != null)
@@ -74,7 +75,8 @@ namespace Medium
                         }
                         currentIncreasing = currentIncreasing.next;
                     }
-                }                
+                }
+                prev = head.val;
                 head = head.next;
                 answearList.Add(max);
             }

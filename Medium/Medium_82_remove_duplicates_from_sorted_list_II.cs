@@ -8,16 +8,68 @@ namespace Medium
     {
         static void Main(string[] args)
         {            
-            var listNode = GetListNode(new int[] { 1, 1, 2, 3 });
+            var listNode = GetListNode(new int[] { 1, 1, 1, 2, 3 });
             PrintList(listNode);
             Console.WriteLine();            
             var deleted = DeleteDuplicates(listNode);
             PrintList(deleted);
+            Console.WriteLine();
+            var listNode2 = GetListNode(new int[] { 1, 2, 3, 3, 4, 4, 5 });
+            PrintList(listNode2);
+            Console.WriteLine();
+            var deleted2 = DeleteDuplicates(listNode2);
+            PrintList(deleted2);
             Console.ReadKey();
         }
 
         public static ListNode DeleteDuplicates(ListNode head)
         {
+            if (head == null || head.next == null)
+                return null;
+            ListNode previous = head;
+            ListNode current = head; 
+            ListNode start = null;            
+            while (current != null && current.next != null)
+            {
+                if (current.val == current.next.val)
+                {
+                    if (start == null)
+                        start = current;                    
+                    current = current.next;
+                }
+                else 
+                {
+                    if (start == null)
+                        previous = current;
+                    else 
+                    {                        
+                        if (previous == start)
+                        {
+                            previous = current.next;
+                            head = current.next;
+                        }
+                        else
+                            previous.next = current.next;
+                        start = null;                        
+                    }
+                    current = current.next;
+                }
+            }
+
+            //if (start != null && current.val == start.val)
+            //{
+            //    if (head == start)
+            //        return null;
+            //    else
+            //        previous.next = null;
+            //}
+            return head;
+        }
+
+        public static ListNode DeleteDuplicatesMy(ListNode head)
+        {
+            if (head == null || head.next == null)
+                return head;
             head = ReverseList(head);
             ListNode answearListNode = null;
             int lastDeletedValue = head.val - 1;

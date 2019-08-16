@@ -10,40 +10,38 @@ namespace Medium
         {            
             var listNode = GetListNode(new int[] { 1, 1, 2, 3 });
             PrintList(listNode);
-            Console.WriteLine();
-            var reverseListNode = ReverseList(listNode);
-            PrintList(reverseListNode);
-            Console.WriteLine();
-            var deleted = DeleteDuplicates(reverseListNode);
+            Console.WriteLine();            
+            var deleted = DeleteDuplicates(listNode);
             PrintList(deleted);
             Console.ReadKey();
         }
 
-        public static ListNode DeleteDuplicates(ListNode reverseListNode)
+        public static ListNode DeleteDuplicates(ListNode head)
         {
+            head = ReverseList(head);
             ListNode answearListNode = null;
-            int lastDeletedValue = reverseListNode.val - 1;
-            while (reverseListNode != null)
+            int lastDeletedValue = head.val - 1;
+            while (head != null)
             {
-                if (reverseListNode.next != null && reverseListNode.next.val == reverseListNode.val)
+                if (head.next != null && head.next.val == head.val)
                 {
-                    lastDeletedValue = reverseListNode.val;
-                    reverseListNode = reverseListNode.next;
-                    reverseListNode = reverseListNode.next;
+                    lastDeletedValue = head.val;
+                    head = head.next;
+                    head = head.next;
                     continue;
                 }  
-                if (reverseListNode.val == lastDeletedValue)
+                if (head.val == lastDeletedValue)
                 {
-                    reverseListNode = reverseListNode.next;
+                    head = head.next;
                     continue;
                 }
-                lastDeletedValue = reverseListNode.val;
+                lastDeletedValue = head.val;
                 var temp = answearListNode;
-                answearListNode = new ListNode(reverseListNode.val)
+                answearListNode = new ListNode(head.val)
                 {
                     next = temp
                 };
-                reverseListNode = reverseListNode.next;
+                head = head.next;
             }
             return answearListNode;
         }

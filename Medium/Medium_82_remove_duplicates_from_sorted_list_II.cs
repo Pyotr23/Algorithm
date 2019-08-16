@@ -54,15 +54,7 @@ namespace Medium
                     }
                     current = current.next;
                 }
-            }
-
-            //if (start != null && current.val == start.val)
-            //{
-            //    if (head == start)
-            //        return null;
-            //    else
-            //        previous.next = null;
-            //}
+            }            
             return head;
         }
 

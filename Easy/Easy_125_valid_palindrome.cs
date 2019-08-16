@@ -7,18 +7,16 @@ namespace Easy
 {
     class Easy_125_valid_palindrome
     {
-        static void Main(string[] args)
-        {
-            string str = "race a car";
-            Console.WriteLine(IsPalindrome(str));
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    string str = "race a car";
+        //    Console.WriteLine(IsPalindrome(str));
+        //    Console.ReadKey();
+        //}
 
         public static bool IsPalindrome(string s)
         {
             s = s.ToLower();
-            //Regex regex = new Regex("[a-z]");
-            //string modernS = regex.Matches(lowerS).ToString();  
             int startIndex = 0;
             int finishIndex = s.Length - 1;
             while (startIndex < finishIndex)

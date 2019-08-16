@@ -8,25 +8,45 @@ namespace Medium
     {
         static void Main(string[] args)
         {            
-            var listNode = GetListNode(new int[] { 1, 2, 3, 3, 4, 4, 5 });
+            var listNode = GetListNode(new int[] { 1, 1, 2, 3 });
             PrintList(listNode);
             Console.WriteLine();
             var reverseListNode = ReverseList(listNode);
             PrintList(reverseListNode);
+            Console.WriteLine();
+            var deleted = DeleteDuplicates(reverseListNode);
+            PrintList(deleted);
             Console.ReadKey();
         }
 
-        //public static ListNode DeleteDuplicates(ListNode head)
-        //{
-        //    var tempCurrentList = head;
-        //    while (head != null)
-        //    {
-        //        if (head.next != null && head.next.val != head.val)
-        //        {
-        //            head = head.next;
-        //        }                
-        //    }
-        //}
+        public static ListNode DeleteDuplicates(ListNode reverseListNode)
+        {
+            ListNode answearListNode = null;
+            int lastDeletedValue = reverseListNode.val - 1;
+            while (reverseListNode != null)
+            {
+                if (reverseListNode.next != null && reverseListNode.next.val == reverseListNode.val)
+                {
+                    lastDeletedValue = reverseListNode.val;
+                    reverseListNode = reverseListNode.next;
+                    reverseListNode = reverseListNode.next;
+                    continue;
+                }  
+                if (reverseListNode.val == lastDeletedValue)
+                {
+                    reverseListNode = reverseListNode.next;
+                    continue;
+                }
+                lastDeletedValue = reverseListNode.val;
+                var temp = answearListNode;
+                answearListNode = new ListNode(reverseListNode.val)
+                {
+                    next = temp
+                };
+                reverseListNode = reverseListNode.next;
+            }
+            return answearListNode;
+        }
 
         private static ListNode GetListNode(int[] array)
         {

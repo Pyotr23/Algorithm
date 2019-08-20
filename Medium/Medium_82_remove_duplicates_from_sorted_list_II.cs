@@ -34,8 +34,7 @@ namespace Medium
                 if (current.val == current.next.val)
                 {
                     if (start == null)
-                        start = current;                    
-                    current = current.next;
+                        start = current;                       
                 }
                 else 
                 {
@@ -51,9 +50,9 @@ namespace Medium
                         else
                             previous.next = current.next;
                         start = null;                        
-                    }
-                    current = current.next;
+                    }                    
                 }
+                current = current.next;
             }            
             return head;
         }

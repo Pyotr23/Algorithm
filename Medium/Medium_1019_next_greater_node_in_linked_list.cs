@@ -13,50 +13,19 @@ namespace Medium
 
     class Medium_1019_next_greater_node_in_linked_list
     {
-        static void Main(string[] args)
-        {
-            //var listNode = new ListNode(10)
-            //{
-            //    next = new ListNode(8)
-            //    {
-            //        next = new ListNode(6)
-            //        {
-            //            next = new ListNode(4)
-            //            {
-            //                next = new ListNode(2)
-            //                {
-            //                    next = new ListNode(3)
-            //                    {
-            //                        next = new ListNode(4)
-            //                        {
-            //                            next = new ListNode(5)
-            //                            {
-            //                                next = new ListNode(4)
-            //                                {
-            //                                    next = new ListNode(3)
-            //                                    {
-            //                                        next = new ListNode(2)
-            //                                    }
-            //                                }
-            //                            }
-            //                        }
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //};
-            var listNode = GetListNode(new List<int>() { 2, 7, 4, 3, 5 });
-            int[] answear = NextLargerNodes(listNode);
-            foreach(var x in answear)
-                Console.Write($"{x} ");
-            Console.ReadKey();            
-        }
+        //static void Main(string[] args)
+        //{            
+        //    var listNode = GetListNode(new List<int>() { 2, 7, 4, 3, 5 });
+        //    int[] answear = NextLargerNodes(listNode);
+        //    foreach(var x in answear)
+        //        Console.Write($"{x} ");
+        //    Console.ReadKey();            
+        //}
 
         private static int[] NextLargerNodes(ListNode head)
         {
             List<int> answearList = new List<int>();
-            var increasingListNode = GetListNode(head);
+            var increasingListNode = GetIncreasingListNode(head);
             int prev = int.MaxValue;
             while (head != null)
             {                
@@ -83,7 +52,7 @@ namespace Medium
             return answearList.ToArray();
         }
 
-        private static ListNode GetListNode(ListNode lNode)
+        private static ListNode GetIncreasingListNode(ListNode lNode)
         {
             var tempListNode = lNode;
             var nodesList = new List<int>();

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Easy
 {
-    class Eay_1108_Defanging_an_IP_address
+    class Easy_1108_defanging_an_ip_address.cs
     {
         static void Main(string[] args)
         {

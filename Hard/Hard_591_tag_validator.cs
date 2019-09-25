@@ -8,5 +8,10 @@ namespace Hard
         {
             Console.WriteLine("Hello World!");
         }
+
+        public static bool IsValid(string code)
+        {
+
+        }
     }
 }

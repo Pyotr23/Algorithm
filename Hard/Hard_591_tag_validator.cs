@@ -35,10 +35,17 @@ namespace Hard
         }
 
         public static string GetCodeWithCheckingFirstTag(string code)
-        {            
-            var regex = new Regex(@"^<(?<tagName>[A-Z]{1,9})>.*</\k<tagName>>");
+        {
+            var regex = new Regex(@"(?<=^<)[A-Z]{1,9}(?=>)");
             var match = regex.Match(code);
-            return match.Value;
+            string startTag = match.Value;
+            if (string.IsNullOrEmpty(startTag))
+                return string.Empty;
+            regex = new Regex($"</{startTag}>$", RegexOptions.IgnoreCase);
+            match = regex.Match(code);
+            if (string.IsNullOrEmpty(match.Value))
+                return match.Value;
+            return code;
         }
 
         public static bool IsValidTags(string code)

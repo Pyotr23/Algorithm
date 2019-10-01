@@ -7,20 +7,19 @@ namespace Hard
     {
         static void Main(string[] args)
         {
-            string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
-            //string input = "<DIV>This is the first line <![CDATA[<div>]]></DIV>";            
+            //string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
+            string input = "<TRUE><![CDATA[wahaha]]]><![CDATA[]> wahaha]]></TRUE>";
             Console.WriteLine(IsValid(input));
             Console.ReadKey();
         }
 
         public static bool IsValid(string code)
         {
-            code = GetCodeWithDeletingCdata(code);
-            Console.WriteLine(code);
+            code = GetCodeWithDeletingCdata(code);            
             code = GetCodeWithCheckingTag(code);
             if (string.IsNullOrEmpty(code))
                 return false;            
-            return true;
+            return IsValidTags(code);
         }
 
         public static string GetCodeWithDeletingCdata(string code)
@@ -38,6 +37,26 @@ namespace Hard
             var regex = new Regex(@"(?<=^<(?<tagName>[A-Z]{1,9})>).+(?=</\k<tagName>>)");
             var match = regex.Match(code);
             return match.Value;
+        }
+
+        public static bool IsValidTags(string code)
+        {
+            var regex = new Regex(@"(?<=<)/?[A-Z]{1,9}(?=>)", RegexOptions.IgnoreCase);
+            var matches = regex.Matches(code);            
+            if (matches.Count == 0)
+                return true;
+            if (matches.Count % 2 != 0)
+                return false;
+            int start = 0;
+            int end = matches.Count - 1;
+            while(start != end)
+            {
+                if (matches[end].Value != $"/{matches[start].Value}")
+                    return false;
+                start++;
+                end--;
+            }
+            return true;
         }
     }
 }

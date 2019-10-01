@@ -8,15 +8,17 @@ namespace Hard
         static void Main(string[] args)
         {
             //string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
-            string input = "<TRUE><![CDATA[wahaha]]]><![CDATA[]> wahaha]]></TRUE>";
+            string input = "<A></A><B></B>";
             Console.WriteLine(IsValid(input));
             Console.ReadKey();
         }
 
         public static bool IsValid(string code)
         {
-            code = GetCodeWithDeletingCdata(code);            
-            code = GetCodeWithCheckingTag(code);
+            code = GetCodeWithDeletingCdata(code);
+            Console.WriteLine(code);
+            code = GetCodeWithCheckingFirstTag(code);
+            Console.WriteLine(code);
             if (string.IsNullOrEmpty(code))
                 return false;            
             return IsValidTags(code);
@@ -32,9 +34,9 @@ namespace Hard
             return code.Replace(matchValue, string.Empty);
         }
 
-        public static string GetCodeWithCheckingTag(string code)
+        public static string GetCodeWithCheckingFirstTag(string code)
         {            
-            var regex = new Regex(@"(?<=^<(?<tagName>[A-Z]{1,9})>).+(?=</\k<tagName>>)");
+            var regex = new Regex(@"^<(?<tagName>[A-Z]{1,9})>.*</\k<tagName>>");
             var match = regex.Match(code);
             return match.Value;
         }
@@ -47,9 +49,9 @@ namespace Hard
                 return true;
             if (matches.Count % 2 != 0)
                 return false;
-            int start = 0;
-            int end = matches.Count - 1;
-            while(start != end)
+            int start = 1;
+            int end = matches.Count - 2;
+            while(start < end)
             {
                 if (matches[end].Value != $"/{matches[start].Value}")
                     return false;

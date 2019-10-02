@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Hard
@@ -8,7 +10,7 @@ namespace Hard
         static void Main(string[] args)
         {
             //string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
-            string input = "<A></A><B></B>";
+            string input = "<DIV><></></DIV>";
             Console.WriteLine(IsValid(input));
             Console.ReadKey();
         }
@@ -21,7 +23,7 @@ namespace Hard
             Console.WriteLine(code);
             if (string.IsNullOrEmpty(code))
                 return false;            
-            return IsValidTags(code);
+            return IsValidTagsAndBrackets(code);
         }
 
         public static string GetCodeWithDeletingCdata(string code)
@@ -48,22 +50,44 @@ namespace Hard
             return code;
         }
 
-        public static bool IsValidTags(string code)
+        public static bool IsValidTagsAndBrackets(string code)
         {
-            var regex = new Regex(@"(?<=<)/?[A-Z]{1,9}(?=>)", RegexOptions.IgnoreCase);
-            var matches = regex.Matches(code);            
-            if (matches.Count == 0)
+            var tagRegex = new Regex(@"(?<=<)/?[A-Z]{1,9}(?=>)", RegexOptions.IgnoreCase);
+            var tags = tagRegex.Matches(code).Select(x => x.Value).ToArray();
+            var bracketRegex = new Regex("[<>]");
+            var brackets = bracketRegex.Matches(code).Select(y => y.Value).ToArray();
+            return IsValidTags(tags) && IsValidBrackets(brackets);
+        }
+
+        public static bool IsValidTags(string[] tags)
+        {
+            if (tags.Length == 0)
                 return true;
-            if (matches.Count % 2 != 0)
+            if (tags.Length % 2 != 0)
                 return false;
-            int start = 1;
-            int end = matches.Count - 2;
-            while(start < end)
+            var tagStack = new Stack<string>();
+            for (int i = 1; i <= tags.Length - 2; i++)
             {
-                if (matches[end].Value != $"/{matches[start].Value}")
-                    return false;
-                start++;
-                end--;
+                if (tags[i].StartsWith("/"))
+                {
+                    if (tagStack.Count == 0 || tags[i] != $"/{tagStack.Pop()}")
+                        return false;
+                }
+                else
+                    tagStack.Push(tags[i]);
+            }
+            return tagStack.Count == 0;
+        }
+
+        public static bool IsValidBrackets(string[] brackets)
+        {                     
+            for (int i = 2; i <= brackets.Length - 3; i++)
+            {
+                if (brackets[i] == "<")
+                {
+                    if (brackets[i + 1] == "<")
+                        return false;
+                }                
             }
             return true;
         }

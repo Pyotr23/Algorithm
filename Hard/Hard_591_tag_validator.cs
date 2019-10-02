@@ -10,7 +10,7 @@ namespace Hard
         static void Main(string[] args)
         {
             //string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
-            string input = "<DIV><></></DIV>";
+            string input = "<![CDATA[ABC]]><TAG>sometext</TAG>";
             Console.WriteLine(IsValid(input));
             Console.ReadKey();
         }
@@ -28,10 +28,10 @@ namespace Hard
 
         public static string GetCodeWithDeletingCdata(string code)
         {
-            var regex = new Regex(@"<!\[CDATA\[.+\]\]>", RegexOptions.IgnoreCase);
+            var regex = new Regex(@"<!\[CDATA\[.*\]\]>", RegexOptions.IgnoreCase);
             var match = regex.Match(code);
             string matchValue = match.Value;
-            if (string.IsNullOrEmpty(match.Value))
+            if (code.StartsWith(matchValue) || string.IsNullOrEmpty(match.Value))
                 return code;
             return code.Replace(matchValue, string.Empty);
         }
@@ -52,8 +52,13 @@ namespace Hard
 
         public static bool IsValidTagsAndBrackets(string code)
         {
-            var tagRegex = new Regex(@"(?<=<)/?[A-Z]{1,9}(?=>)", RegexOptions.IgnoreCase);
-            var tags = tagRegex.Matches(code).Select(x => x.Value).ToArray();
+            var tagRegex = new Regex(@"(?<=<)/?[A-Z]{1,9}(?=>)");
+            var anyTagRegex = new Regex(@"</?[^>]*>");            
+            int tagsMatchesCount = tagRegex.Matches(code).Count;
+            int anyTagsMatchesCount = anyTagRegex.Matches(code).Count;
+            if (tagsMatchesCount != anyTagsMatchesCount)
+                return false;
+            var tags = tagRegex.Matches(code).Select(x => x.Value).ToArray();             
             var bracketRegex = new Regex("[<>]");
             var brackets = bracketRegex.Matches(code).Select(y => y.Value).ToArray();
             return IsValidTags(tags) && IsValidBrackets(brackets);
@@ -68,6 +73,10 @@ namespace Hard
             var tagStack = new Stack<string>();
             for (int i = 1; i <= tags.Length - 2; i++)
             {
+                //if (tags[i].Length == 0 || tags[i].Length > 9)
+                //    return false;
+                //if (tags[i] != tags[i].ToUpper())
+                //    return false;
                 if (tags[i].StartsWith("/"))
                 {
                     if (tagStack.Count == 0 || tags[i] != $"/{tagStack.Pop()}")

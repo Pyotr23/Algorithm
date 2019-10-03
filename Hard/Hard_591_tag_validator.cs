@@ -10,7 +10,8 @@ namespace Hard
         static void Main(string[] args)
         {
             //string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
-            string input = "<![CDATA[ABC]]><TAG>sometext</TAG>";
+            string input = "<DIV>This is the first line <![CDATA[<div> <![cdata]> [[]]</div>   ]]>  <DIV> <A>  <![CDATA[<b>]]>  " +
+                "</A>  <A> <C></C></A></DIV>    </DIV>";
             Console.WriteLine(IsValid(input));
             Console.ReadKey();
         }
@@ -28,12 +29,14 @@ namespace Hard
 
         public static string GetCodeWithDeletingCdata(string code)
         {
-            var regex = new Regex(@"<!\[CDATA\[.*\]\]>", RegexOptions.IgnoreCase);
-            var match = regex.Match(code);
-            string matchValue = match.Value;
-            if (code.StartsWith(matchValue) || string.IsNullOrEmpty(match.Value))
-                return code;
-            return code.Replace(matchValue, string.Empty);
+            var regex = new Regex(@"<!\[CDATA\[.*?\]\]>");
+            var matches = regex.Matches(code);
+            foreach(Match match in matches)
+            {
+                if (!(code.StartsWith(match.Value) || code.EndsWith(match.Value)))
+                    code = code.Replace(match.Value, string.Empty);
+            }            
+            return code;
         }
 
         public static string GetCodeWithCheckingFirstTag(string code)

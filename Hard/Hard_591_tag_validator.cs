@@ -7,14 +7,14 @@ namespace Hard
 {
     class Hard_591_tag_validator
     {
-        static void Main(string[] args)
-        {
-            //string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
-            string input = "<DIV>This is the first line <![CDATA[<div> <![cdata]> [[]]</div>   ]]>  <DIV> <A>  <![CDATA[<b>]]>  " +
-                "</A>  <A> <C></C></A></DIV>    </DIV>";
-            Console.WriteLine(IsValid(input));
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    //string input = @"<DIV>>>  ![cdata[]] <![CDATA[<div>]>]]>]]>>]</DIV>";
+        //    string input = "<DIV>This is the first line <![CDATA[<div> <![cdata]> [[]]</div>   ]]>  <DIV> <A>  <![CDATA[<b>]]>  " +
+        //        "</A>  <A> <C></C></A></DIV>    </DIV>";
+        //    Console.WriteLine(IsValid(input));
+        //    Console.ReadKey();
+        //}
 
         public static bool IsValid(string code)
         {

@@ -9,10 +9,26 @@ namespace Easy
         public int val;
         public ListNode next;
         public ListNode(int x) { val = x; }
-        //public ListNode(int[] values)
-        //{
-        //    int
-        //}
+        public ListNode(List<int> values)
+        {
+            val = values[0];
+            values.RemoveAt(0);
+            if (values.Count != 0)
+            {
+                next = GetNextNode(this, values);
+            }
+        }
+
+        private ListNode GetNextNode(ListNode currentNode, List<int> values)
+        {            
+            var nextNode = new ListNode(values[0]);
+            values.RemoveAt(0);
+            var tmpNode = new ListNode(nextNode.val);
+            if (values.Count != 0)
+                nextNode.next = GetNextNode(nextNode, values);
+            currentNode.next = nextNode;            
+            return currentNode;
+        }
 
         public void PrintListNode()
         {

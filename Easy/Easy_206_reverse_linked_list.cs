@@ -9,6 +9,26 @@ namespace Easy
         public int val;
         public ListNode next;
         public ListNode(int x) { val = x; }
+        //public ListNode(int[] values)
+        //{
+        //    int
+        //}
+
+        public void PrintListNode()
+        {
+            PrintNode(this);
+        }
+
+        public void PrintNode(ListNode listNode)
+        {
+            if (listNode.next == null)
+                Console.WriteLine($"{listNode.val}");
+            else
+            {
+                Console.Write($"{listNode.val} -> ");
+                PrintNode(listNode.next);
+            }
+        }
     }
     class Easy_206_reverse_linked_list
     {

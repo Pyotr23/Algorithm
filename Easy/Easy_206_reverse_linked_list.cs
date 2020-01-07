@@ -10,22 +10,22 @@ namespace Easy
         public ListNode next;
         public ListNode(int x) { val = x; }
         public ListNode(List<int> values)
-        {
+        {            
             val = values[0];
             values.RemoveAt(0);
             if (values.Count != 0)
             {
-                next = GetNextNode(this, values);
+                next = GetCurrentNode(this, values).next;
             }
         }
 
-        private ListNode GetNextNode(ListNode currentNode, List<int> values)
+        private ListNode GetCurrentNode(ListNode currentNode, List<int> values)
         {            
             var nextNode = new ListNode(values[0]);
             values.RemoveAt(0);
             var tmpNode = new ListNode(nextNode.val);
             if (values.Count != 0)
-                nextNode.next = GetNextNode(nextNode, values);
+                nextNode = GetCurrentNode(tmpNode, values);
             currentNode.next = nextNode;            
             return currentNode;
         }

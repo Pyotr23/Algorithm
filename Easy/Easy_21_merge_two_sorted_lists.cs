@@ -11,8 +11,9 @@ namespace Easy
             var listNode = new ListNode(1) { next = new ListNode(3) { next = new ListNode(5) } };
             listNode.PrintListNode();
 
-            var secondList = new ListNode(new List<int> { 2, 4, 6 });
+            var secondList = new ListNode(new List<int> { 1, 1, 2, 3, 4, 4 });
             secondList.PrintListNode();
+
             Console.ReadKey();
         }
 

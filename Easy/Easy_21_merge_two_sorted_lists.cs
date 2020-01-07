@@ -9,7 +9,7 @@ namespace Easy
         static void Main(string[] args)
         {
             //var mergedListNode = MergeTwoLists(new ListNode(new List<int> { 1, 2, 4 }), new ListNode(new List<int> { 1, 3, 4 }));
-            var mergedListNode = MergeTwoLists(new ListNode(new List<int> { 2 }), new ListNode(new List<int> { 1, 5, 6 }));
+            var mergedListNode = MergeTwoLists(new ListNode(new List<int> { 5 }), new ListNode(new List<int> { 1, 2, 4 }));
             mergedListNode.PrintListNode();
             Console.ReadKey();
         }
@@ -22,24 +22,17 @@ namespace Easy
                 return l2;
             if (l2 == null)
                 return l1;
-            ListNode nextNode = new ListNode(l1.val) { next = new ListNode(l2.val) };
-            nextNode.next.next = MergeTwoLists(l1.next, l2.next);
-            //if (l1 != null)
-            //{
-            //    nextNode = new ListNode(l1.val);
-            //    if (l2 != null)
-            //    {
-            //        nextNode.next = new ListNode(l2.val);
-            //        nextNode.next.next = MergeTwoLists(l1.next, l2.next);
-            //    }
-            //    else
-            //        nextNode.next = MergeTwoLists(l1.next, null);
-            //}
-            //else
-            //{
-            //    nextNode = new ListNode(l2.val);
-            //    nextNode.next = MergeTwoLists(null, l2.next);
-            //}
+            ListNode nextNode;
+            if (l1.val <= l2.val)
+            {
+                nextNode = new ListNode(l1.val);
+                nextNode.next = MergeTwoLists(l1.next, l2);
+            }
+            else
+            {
+                nextNode = new ListNode(l2.val);
+                nextNode.next = MergeTwoLists(l1, l2.next);
+            }
             return nextNode;
         }
 

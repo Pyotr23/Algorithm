@@ -8,15 +8,15 @@ namespace Easy
     {
         static void Main(string[] args)
         {
-            int[] nums1 = { 0 };
-            int[] nums2 = { 1 };
-            Merge(nums1, 0, nums2, 1);
+            int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+            int[] nums2 = { 2, 5, 6 };
+            //Merge(nums1, 3, nums2, 3);
             foreach (int x in nums1)
                 Console.Write(x + " ");
             Console.ReadKey();
         }
 
-        public static void Merge(int[] nums1, int m, int[] nums2, int n)
+        public static void FastestMerge(int[] nums1, int m, int[] nums2, int n)
         {
             int i = 0;
             int j = 0;
@@ -24,8 +24,25 @@ namespace Easy
             {
                 if (nums2[j] < nums1[i])
                 {
-                    
+                    int k = m - 1;      // Индекс последнего проинициализированного элемента в изначальном nums1.
+                    while (k >= i)      // Сдвиг всех значений с i по k.
+                    {
+                        nums1[k + 1] = nums1[k];
+                        k--;
+                    }
+                    nums1[i] = nums2[j];
+                    m++;
+                    i++;
+                    j++;
+                    continue;
                 }
+
+                if (m <= i)
+                {
+                    nums1[i] = nums2[j];
+                    j++;
+                }
+                i++;
             }
         }
 

@@ -6,13 +6,13 @@ namespace Easy
 {    
     class Easy_21_merge_two_sorted_lists
     {
-        static void Main(string[] args)
-        {
-            //var mergedListNode = MergeTwoLists(new ListNode(new List<int> { 1, 2, 4 }), new ListNode(new List<int> { 1, 3, 4 }));
-            var mergedListNode = MergeTwoLists(new ListNode(new List<int> { 5 }), new ListNode(new List<int> { 1, 2, 4 }));
-            mergedListNode.PrintListNode();
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    var mergedListNode = MergeTwoLists(new ListNode(new List<int> { 1, 2, 4 }), new ListNode(new List<int> { 1, 3, 4 }));
+        //    var mergedListNode = MergeTwoLists(new ListNode(new List<int> { 5 }), new ListNode(new List<int> { 1, 2, 4 }));
+        //    mergedListNode.PrintListNode();
+        //    Console.ReadKey();
+        //}
 
         public static ListNode MergeTwoLists(ListNode l1, ListNode l2)
         {            

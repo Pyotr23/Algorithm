@@ -6,15 +6,15 @@ namespace Easy
 {
     class Easy_88_merge_sorted_array
     {
-        static void Main(string[] args)
-        {
-            int[] nums1 = { 1, 2, 3, 0, 0, 0 };
-            int[] nums2 = { 2, 5, 6 };
-            //Merge(nums1, 3, nums2, 3);
-            foreach (int x in nums1)
-                Console.Write(x + " ");
-            Console.ReadKey();
-        }
+        //static void Main(string[] args)
+        //{
+        //    int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+        //    int[] nums2 = { 2, 5, 6 };
+        //    //Merge(nums1, 3, nums2, 3);
+        //    foreach (int x in nums1)
+        //        Console.Write(x + " ");
+        //    Console.ReadKey();
+        //}
 
         public static void FastestMerge(int[] nums1, int m, int[] nums2, int n)
         {

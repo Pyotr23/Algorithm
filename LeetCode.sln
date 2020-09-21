@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Easy", "Easy\Easy.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Medium", "Medium\Medium.csproj", "{C48E5624-BEA1-4A5C-8692-59D998E2BEB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hard", "Hard\Hard.csproj", "{5DCBB1A4-8819-4C04-92BE-941F1FB9D502}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{C48E5624-BEA1-4A5C-8692-59D998E2BEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48E5624-BEA1-4A5C-8692-59D998E2BEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C48E5624-BEA1-4A5C-8692-59D998E2BEB6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DCBB1A4-8819-4C04-92BE-941F1FB9D502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DCBB1A4-8819-4C04-92BE-941F1FB9D502}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DCBB1A4-8819-4C04-92BE-941F1FB9D502}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DCBB1A4-8819-4C04-92BE-941F1FB9D502}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

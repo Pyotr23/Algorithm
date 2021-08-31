@@ -6,6 +6,12 @@
         <AssemblyName>Easy.SummaryRanges</AssemblyName>
         <RootNamespace>Easy.SummaryRanges</RootNamespace>
         <Nullable>enable</Nullable>
+        <StartupObject>Easy.SummaryRanges.Program</StartupObject>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+      <PackageReference Include="NUnit" Version="3.13.2" />
+    </ItemGroup>
 
 </Project>

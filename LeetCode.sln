@@ -9,6 +9,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "228. Summary Ranges", "228.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SummaryRanges", "Easy\SummaryRanges\SummaryRanges.csproj", "{76207B8F-AD4F-4BA5-9B53-28880DCCE7FB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1893. Check if All the Integers in a Range Are Covered", "1893. Check if All the Integers in a Range Are Covered", "{7CF4832D-E2F5-4FC0-A71B-7A3E3DDF3656}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoveredIntegers", "Easy\CoveredIntegers\CoveredIntegers.csproj", "{5668DD6B-1AEF-4626-9F38-EA1271630C6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,10 @@ Global
 		{76207B8F-AD4F-4BA5-9B53-28880DCCE7FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76207B8F-AD4F-4BA5-9B53-28880DCCE7FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76207B8F-AD4F-4BA5-9B53-28880DCCE7FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5668DD6B-1AEF-4626-9F38-EA1271630C6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5668DD6B-1AEF-4626-9F38-EA1271630C6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5668DD6B-1AEF-4626-9F38-EA1271630C6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5668DD6B-1AEF-4626-9F38-EA1271630C6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,5 +37,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{15A51A94-7F1E-4740-8520-A7120E5DA37D} = {AAAEFDFA-EF64-4205-88E7-87ED1EA9A206}
 		{76207B8F-AD4F-4BA5-9B53-28880DCCE7FB} = {15A51A94-7F1E-4740-8520-A7120E5DA37D}
+		{7CF4832D-E2F5-4FC0-A71B-7A3E3DDF3656} = {AAAEFDFA-EF64-4205-88E7-87ED1EA9A206}
+		{5668DD6B-1AEF-4626-9F38-EA1271630C6C} = {7CF4832D-E2F5-4FC0-A71B-7A3E3DDF3656}
 	EndGlobalSection
 EndGlobal

@@ -4,7 +4,7 @@ namespace Easy.SummaryRanges
 {
     internal class Program
     {
-        internal static void Main(string[] args)
+        internal static void Main()
         {
         }
         
@@ -36,7 +36,7 @@ namespace Easy.SummaryRanges
                     continue;
                 }
 
-                if (start != current)
+                if (!(start == current ||  start == nums[i - 1]))
                     tempString += $"->{nums[i - 1]}";
 
                 list.Add(tempString);

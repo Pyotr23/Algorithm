@@ -8,7 +8,7 @@ namespace Easy.SummaryRanges
         {
         }
         
-        internal static IList<string> SummaryRanges(int[] nums)
+        internal static IList<string> MyVersionSummaryRanges(int[] nums)
         {
             var list = new List<string>();
             
@@ -52,6 +52,26 @@ namespace Easy.SummaryRanges
             list.Add(tempString);
 
             return list;
+        }
+        
+        internal static IList<string> SummaryRanges(int[] nums)
+        {
+            var summary = new List<string>();
+            
+            // i отвечает за начальное значение, j бежит по массиву
+            for (int i = 0, j = 0; j < nums.Length; j++) 
+            {
+                if (j + 1 < nums.Length && nums[j + 1] == nums[j] + 1)
+                    continue;
+                
+                if (i == j)
+                    summary.Add(nums[i].ToString());
+                else
+                    summary.Add(nums[i] + "->" + nums[j]);
+                
+                i = j + 1;
+            }
+            return summary;
         }
     }
 }

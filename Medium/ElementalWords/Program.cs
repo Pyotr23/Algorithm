@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ElementalWords
 {
@@ -125,10 +127,71 @@ namespace ElementalWords
                       /*117*/ { "Ts", "Tennessine" },
                       /*118*/ { "Og", "Oganesson" }
                   };
+
+        private static List<List<string>> _list = new List<List<string>>();
+
+        private static readonly HashSet<string> _keys = ELEMENTS
+            .Keys
+            .Select(k => k.ToLower())
+            .ToHashSet();
         
         static void Main(string[] args)
         {
+            ElementalForms("snack");
+        }
+        
+        public static string[][] ElementalForms(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+                return Array.Empty<string[]>();
+
+            var keys = GetKeys(word);
+
+            foreach (var key in keys)
+            {
+                var form = (key, new List<string> {key});
+                ElementalForms(form, word);
+            }
             
+            return new string[0][];   
+        }
+
+        private static IEnumerable<string> GetKeys(string word)
+        {
+            if (string.IsNullOrEmpty(word))
+                return Enumerable.Empty<string>();
+            
+            return _keys.Where(word.StartsWith);
+        }
+
+        private static IEnumerable<string> GetKeys(ICollection<string> list, string word)
+        {
+            if (string.IsNullOrEmpty(word))
+                return Enumerable.Empty<string>();
+
+            var beginning = string.Join("", list);
+            
+            return _keys.Where(k => word.StartsWith(beginning + k));
+        }
+
+        private static void ElementalForms((string, List<string>) obj, string wholeWord)
+        {
+            var (partialWord, list) = obj;
+            
+            if (partialWord == wholeWord)
+            {
+                _list.Add(list);
+                return;
+            }
+
+            var keys = GetKeys(list, wholeWord);
+            
+            foreach (var key in keys)
+            {
+                var newList = new List<string>(list) {key};
+                var form = (partialWord + key, newList);
+                ElementalForms(form, wholeWord);
+            }
         }
     }
 }

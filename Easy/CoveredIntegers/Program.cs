@@ -21,34 +21,33 @@ namespace CoveredIntegers
                 new[] {10, 20}
             };
             Console.WriteLine(IsCovered(ranges, 21, 21));
+            
+            ranges = new[]
+            {
+                new[] {1, 50}
+            };
+            Console.WriteLine(IsCovered(ranges, 50, 50));
         }
         
         public static bool IsCovered(int[][] ranges, int left, int right)
         {
-            var hashSet = CreateHashSet(ranges);
-            
-            for (var i = left; i <= right; i++)
-            {
-                if (hashSet.Add(i))
-                    return false;;
-            }
-
-            return true;
-        }
-
-        private static HashSet<int> CreateHashSet(int[][] ranges)
-        {
-            var hashSet = new HashSet<int>();
+            var array = new int[51];
             
             foreach (var range in ranges)
             {
                 for (var i = range[0]; i <= range[1]; i++)
                 {
-                    hashSet.Add(i);
+                    array[i] = 1;
                 }
             }
+            
+            for (var i = left; i <= right; i++)
+            {
+                if (array[i] == 0)
+                    return false;;
+            }
 
-            return hashSet;
+            return true;
         }
     }
 }

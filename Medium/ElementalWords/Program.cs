@@ -46,7 +46,7 @@ namespace ElementalWords
                       /*36*/ { "Kr", "Криптон (Kr)" },
                       /*37*/ { "Rb", "Рубидий (Rb)" },
                       /*38*/ { "Sr", "Стронций (Sr)" },
-                      /*39*/ { "Y", "Иттрий (Y)" },
+                      /*39*/ { "Y", "Yttrium" },
                       /*40*/ { "Zr", "Цирконий (Zn)" },
                       /*41*/ { "Nb", "Ниобий (Nb)" },
                       /*42*/ { "Mo", "Молибден (Mo)" },
@@ -96,7 +96,7 @@ namespace ElementalWords
                       /*86*/ { "Rn", "Радон (Rn)" },
                       /*87*/ { "Fr", "Франций (Fr)" },
                       /*88*/ { "Ra", "Радий (Ra)" },
-                      /*89*/ { "Ac", "Актиний (Ac)" },
+                      /*89*/ { "Ac", "Actinium " },
                       /*90*/ { "Th", "Торий (Th)" },
                       /*91*/ { "Pa", "Протактиний (Pa)" },
                       /*92*/ { "U", "Уран (U)" },
@@ -106,7 +106,7 @@ namespace ElementalWords
                       /*96*/ { "Cm", "Кюрий (Cm)" },
                       /*97*/ { "Bk", "Берклий (Bk)" },
                       /*98*/ { "Cf", "Калифорний (Cf)" },
-                      /*99*/ { "Es", "Эйнштейний (Es)" },
+                      /*99*/ { "Es", "Einsteinium" },
                       /*100*/ { "Fm", "Фермий (Fm)" },
                       /*101*/ { "Md", "Менделевий (Md)" },
                       /*102*/ { "No", "Нобелий (No)" },
@@ -128,69 +128,59 @@ namespace ElementalWords
                       /*118*/ { "Og", "Oganesson" }
                   };
 
-        private static List<List<string>> _list = new List<List<string>>();
+        private static readonly List<List<string>> _list = new List<List<string>>();
+        private static string _word;
 
         private static readonly HashSet<string> _keys = ELEMENTS
             .Keys
-            .Select(k => k.ToLower())
             .ToHashSet();
         
-        static void Main(string[] args)
+        static void Main()
         {
-            ElementalForms("snack");
+            ElementalForms("beach");
         }
         
         public static string[][] ElementalForms(string word)
         {
+            _word = word.ToLower();
+            
             if (string.IsNullOrEmpty(word))
                 return Array.Empty<string[]>();
 
-            var keys = GetKeys(word);
-
-            foreach (var key in keys)
+            foreach (var key in _keys.Where(x => word.StartsWith(x, StringComparison.OrdinalIgnoreCase)))
             {
-                var form = (key, new List<string> {key});
-                ElementalForms(form, word);
+                FillResultList(key, new List<string> {key});
             }
             
-            return new string[0][];   
+            var arr = _list
+                .Select(x => x.Select(str => $"{ELEMENTS[str]} ({str})").ToArray())
+                .ToArray();
+
+            _list.Clear();
+
+            return arr;
         }
 
-        private static IEnumerable<string> GetKeys(string word)
+        private static IEnumerable<string> GetKeys(IEnumerable<string> list)
         {
-            if (string.IsNullOrEmpty(word))
-                return Enumerable.Empty<string>();
-            
-            return _keys.Where(word.StartsWith);
-        }
-
-        private static IEnumerable<string> GetKeys(ICollection<string> list, string word)
-        {
-            if (string.IsNullOrEmpty(word))
-                return Enumerable.Empty<string>();
-
             var beginning = string.Join("", list);
-            
-            return _keys.Where(k => word.StartsWith(beginning + k));
+            return _keys.Where(k => _word.StartsWith(beginning + k, StringComparison.OrdinalIgnoreCase));
         }
 
-        private static void ElementalForms((string, List<string>) obj, string wholeWord)
+        private static void FillResultList(string partialWord, List<string> partialWordParts)
         {
-            var (partialWord, list) = obj;
-            
-            if (partialWord == wholeWord)
+            if (_word.Equals(partialWord, StringComparison.OrdinalIgnoreCase))
             {
-                _list.Add(list);
+                _list.Add(partialWordParts);
                 return;
             }
 
-            var keys = GetKeys(list, wholeWord);
+            var keys = GetKeys(partialWordParts);
             
             foreach (var key in keys)
             {
-                var newList = new List<string>(list) {key};
-                var form = (partialWord + key, newList);
-                ElementalForms(form, wholeWord);
+                var newList = new List<string>(partialWordParts) {key};
+                FillResultList(partialWord + key, newList);
             }
         }
     }

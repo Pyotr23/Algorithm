@@ -8,7 +8,7 @@ namespace Easy.SummaryRanges
         {
         }
         
-        internal static IList<string> MyVersionSummaryRanges(int[] nums)
+        internal static IList<string> SummaryRanges(int[] nums)
         {
             var list = new List<string>();
             
@@ -54,7 +54,7 @@ namespace Easy.SummaryRanges
             return list;
         }
         
-        internal static IList<string> SummaryRanges(int[] nums)
+        internal static IList<string> MemorySummaryRanges(int[] nums)
         {
             var summary = new List<string>();
             

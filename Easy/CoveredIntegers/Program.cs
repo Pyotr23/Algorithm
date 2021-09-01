@@ -31,6 +31,15 @@ namespace CoveredIntegers
         
         public static bool IsCovered(int[][] ranges, int left, int right)
         {
+            switch (ranges.Length)
+            {
+                case 0:
+                    return false;
+                case 1:
+                    return Math.Max(left, ranges[0][0]) == left 
+                           && Math.Min(right, ranges[0][1]) == right;
+            }
+
             var array = new int[51];
             
             foreach (var range in ranges)

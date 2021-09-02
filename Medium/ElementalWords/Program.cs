@@ -128,60 +128,61 @@ namespace ElementalWords
                       /*118*/ { "Og", "Oganesson" }
                   };
 
-        private static readonly List<List<string>> _list = new List<List<string>>();
-        private static string _word;
-
-        private static readonly HashSet<string> _keys = ELEMENTS
+        private static readonly HashSet<string> KeyHashSet = ELEMENTS
             .Keys
             .ToHashSet();
         
         static void Main()
         {
-            ElementalForms("beach");
+            var result = ElementalForms("snack");
         }
         
         public static string[][] ElementalForms(string word)
         {
-            _word = word.ToLower();
-            
             if (string.IsNullOrEmpty(word))
                 return Array.Empty<string[]>();
 
-            foreach (var key in _keys.Where(x => word.StartsWith(x, StringComparison.OrdinalIgnoreCase)))
+            var elementalList = new List<List<string>>();
+
+            foreach (var key in KeyHashSet.Where(x => word.StartsWith(x, StringComparison.OrdinalIgnoreCase)))
             {
-                FillResultList(key, new List<string> {key});
+                ElementalForms(new List<string> {key}, elementalList, word);
             }
             
-            var arr = _list
-                .Select(x => x.Select(str => $"{ELEMENTS[str]} ({str})").ToArray())
+            return elementalList
+                .Select(x => x
+                    .Select(str => $"{ELEMENTS[str]} ({str})")
+                    .ToArray())
                 .ToArray();
-
-            _list.Clear();
-
-            return arr;
         }
 
-        private static IEnumerable<string> GetKeys(IEnumerable<string> list)
+        private static IEnumerable<string> GetAbbreviations(IEnumerable<string> list, string word)
         {
-            var beginning = string.Join("", list);
-            return _keys.Where(k => _word.StartsWith(beginning + k, StringComparison.OrdinalIgnoreCase));
+            var beginning = GetString(list);
+            return KeyHashSet.Where(k => word.StartsWith(beginning + k, StringComparison.OrdinalIgnoreCase));
         }
 
-        private static void FillResultList(string partialWord, List<string> partialWordParts)
+        private static void ElementalForms(List<string> abbreviations, List<List<string>> elementalList, string word)
         {
-            if (_word.Equals(partialWord, StringComparison.OrdinalIgnoreCase))
+            
+            if (word.Equals(GetString(abbreviations), StringComparison.OrdinalIgnoreCase))
             {
-                _list.Add(partialWordParts);
+                elementalList.Add(abbreviations);
                 return;
             }
 
-            var keys = GetKeys(partialWordParts);
+            var abbreviation = GetAbbreviations(abbreviations, word);
             
-            foreach (var key in keys)
+            foreach (var key in abbreviation)
             {
-                var newList = new List<string>(partialWordParts) {key};
-                FillResultList(partialWord + key, newList);
+                var enlargedAbbreviationList = new List<string>(abbreviations) {key};
+                ElementalForms(enlargedAbbreviationList, elementalList, word);
             }
+        }
+
+        private static string GetString(IEnumerable<string> stringParts)
+        {
+            return string.Join("", stringParts);
         }
     }
 }

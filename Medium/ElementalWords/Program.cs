@@ -8,7 +8,6 @@ namespace ElementalWords
     {
         private static string _lowerCaseWord;
         private static ElementCollection _elementCollection;
-        private static List<List<string>> _elementalFormList;
 
         private static void Main()
         {
@@ -28,23 +27,28 @@ namespace ElementalWords
             
             _lowerCaseWord = word.ToLower();
             _elementCollection = new ElementCollection();
-            _elementalFormList = new List<List<string>>();
+            var resultList = new List<List<string>>();
 
-            foreach (var key in _elementCollection.GetElementKeys(_lowerCaseWord))
-            {
-                ElementalForms(new List<string> {key});
-            }
+            resultList = _elementCollection
+                .GetElementKeys(_lowerCaseWord)
+                .Aggregate(resultList, CheckElementKey());
 
-            return _elementCollection.GetElementalForms(_elementalFormList);
+            return _elementCollection.GetElementalForms(resultList);
         }
 
-        private static void ElementalForms(List<string> abbreviations)
+        private static Func<List<List<string>>, string, List<List<string>>> CheckElementKey()
+        {
+            return (current, elementKey) 
+                => ElementalForms(new List<string> {elementKey}, current);
+        }
+
+        private static List<List<string>> ElementalForms(List<string> abbreviations, List<List<string>> resultList)
         {
             
             if (_lowerCaseWord.Equals(StringHelper.GetJoinedString(abbreviations)))
             {
-                _elementalFormList.Add(abbreviations);
-                return;
+                resultList.Add(abbreviations);
+                return resultList;
             }
 
             var elementKeys = _elementCollection.GetElementKeys(_lowerCaseWord, abbreviations);
@@ -52,8 +56,10 @@ namespace ElementalWords
             foreach (var elementKey in elementKeys)
             {
                 var enlargedAbbreviationList = new List<string>(abbreviations) {elementKey};
-                ElementalForms(enlargedAbbreviationList);
+                ElementalForms(enlargedAbbreviationList, resultList);
             }
+
+            return resultList;
         }
     }
 }

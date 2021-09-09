@@ -8,7 +8,7 @@ namespace Codewars.Five.DirectionsReduction
         static void Main(string[] args)
         {
             var result = dirReduc(new[] {"NORTH", "WEST", "SOUTH", "EAST"});
-            // var result = dirReduc(new[] {"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"});
+            result = dirReduc(new[] {"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"});
         }
         
         public static string[] dirReduc(string[] arr)
@@ -21,28 +21,29 @@ namespace Codewars.Five.DirectionsReduction
                 {"EAST", "WEST"}
             };
             
-            var stack = new Stack<string>();
+            var list = new List<string>();
             
             foreach (var direction in arr)
             {
-                if (stack.Count == 0)
+                if (list.Count == 0)
                 {
-                    stack.Push(direction);
+                    
+                    list.Add(direction);
                     continue;
                 }
                 
                 var oppositeDirection = directions[direction];
                  
-                if (stack.Peek() == oppositeDirection)
+                if (list.Last() == oppositeDirection)
                 {
-                    stack.Pop();
+                    list.RemoveAt(list.Count - 1);
                     continue;
                 }
                 
-                stack.Push(direction);
+                list.Add(direction);
             }
 
-            return stack.Reverse().ToArray();
+            return list.ToArray();
         }
     }
 }

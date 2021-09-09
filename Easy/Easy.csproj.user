@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
-  <ItemGroup>
-    <None Update="1480_runnung_sum_of_1d_array\Easy_1480_running_sum_of_1d_array.ts">
-      <SubType>Code</SubType>
-    </None>
-  </ItemGroup>
-</Project>

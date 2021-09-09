@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Codewars.Four.ElementalWords/1.0.0": {
+        "runtime": {
+          "Codewars.Four.ElementalWords.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Codewars.Four.ElementalWords/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

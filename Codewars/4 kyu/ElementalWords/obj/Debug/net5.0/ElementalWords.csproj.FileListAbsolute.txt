@@ -1,0 +1,32 @@
+C:\git\Learning\Algorithm\Medium\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.exe
+C:\git\Learning\Algorithm\Medium\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.deps.json
+C:\git\Learning\Algorithm\Medium\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.runtimeconfig.json
+C:\git\Learning\Algorithm\Medium\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.runtimeconfig.dev.json
+C:\git\Learning\Algorithm\Medium\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Medium\ElementalWords\bin\Debug\net5.0\ref\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Medium\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.pdb
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\ElementalWords.csprojAssemblyReference.cache
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\ElementalWords.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\ElementalWords.AssemblyInfoInputs.cache
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\ElementalWords.AssemblyInfo.cs
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\ElementalWords.csproj.CoreCompileInputs.cache
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\ref\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\Codewars.Four.ElementalWords.pdb
+C:\git\Learning\Algorithm\Medium\ElementalWords\obj\Debug\net5.0\ElementalWords.genruntimeconfig.cache
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.exe
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.deps.json
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.runtimeconfig.json
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.runtimeconfig.dev.json
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\bin\Debug\net5.0\ref\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\bin\Debug\net5.0\Codewars.Four.ElementalWords.pdb
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\ElementalWords.csprojAssemblyReference.cache
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\ElementalWords.GeneratedMSBuildEditorConfig.editorconfig
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\ElementalWords.AssemblyInfoInputs.cache
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\ElementalWords.AssemblyInfo.cs
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\ElementalWords.csproj.CoreCompileInputs.cache
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\ref\Codewars.Four.ElementalWords.dll
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\Codewars.Four.ElementalWords.pdb
+C:\git\Learning\Algorithm\Codewars\4 kyu\ElementalWords\obj\Debug\net5.0\ElementalWords.genruntimeconfig.cache

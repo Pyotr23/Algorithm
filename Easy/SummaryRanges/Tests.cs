@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace Easy.SummaryRanges
+namespace LeetCode.Easy.SummaryRanges
 {
     public class Tests
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ElementalWords
+namespace Codewars.Four.ElementalWords
 {
     internal static class StringHelper
     {

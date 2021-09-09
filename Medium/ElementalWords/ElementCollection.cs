@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ElementalWords
+namespace Codewars.Four.ElementalWords
 {
     internal class ElementCollection
     {

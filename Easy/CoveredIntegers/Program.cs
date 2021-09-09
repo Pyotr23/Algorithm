@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace CoveredIntegers
+namespace LeetCode.Easy.CoveredIntegers
 {
     class Program
     {

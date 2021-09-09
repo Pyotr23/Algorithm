@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Easy.SummaryRanges
+namespace LeetCode.Easy.SummaryRanges
 {
     internal class Program
     {

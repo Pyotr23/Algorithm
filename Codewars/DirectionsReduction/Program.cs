@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Codewars.Five.DirectionsReduction
@@ -8,7 +7,8 @@ namespace Codewars.Five.DirectionsReduction
     {
         static void Main(string[] args)
         {
-            dirReduc(new[] {"NORTH", "WEST", "SOUTH", "EAST"});
+            var result = dirReduc(new[] {"NORTH", "WEST", "SOUTH", "EAST"});
+            // var result = dirReduc(new[] {"NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"});
         }
         
         public static string[] dirReduc(string[] arr)
@@ -20,29 +20,29 @@ namespace Codewars.Five.DirectionsReduction
                 {"WEST", "EAST"},
                 {"EAST", "WEST"}
             };
-            var dictionary = new Dictionary<string, List<int>>();
-            for (var i = 0; i < arr.Length; i++)
+            
+            var stack = new Stack<string>();
+            
+            foreach (var direction in arr)
             {
-                var direction = arr[i];
-                var oppositeDirection = directions[direction];
-                if (dictionary.ContainsKey(oppositeDirection))
+                if (stack.Count == 0)
                 {
-                    var oppositeIndexes = dictionary[oppositeDirection];
-                    oppositeIndexes.RemoveAt(0);
+                    stack.Push(direction);
+                    continue;
                 }
                 
-                if (dictionary.ContainsKey(direction))
+                var oppositeDirection = directions[direction];
+                 
+                if (stack.Peek() == oppositeDirection)
                 {
-                    var indexes = dictionary[direction];
-                    indexes.Add(i);
+                    stack.Pop();
+                    continue;
                 }
-                else
-                {
-                    dictionary.Add(direction, new List<int> { i });
-                }
+                
+                stack.Push(direction);
             }
 
-            return null;
+            return stack.Reverse().ToArray();
         }
     }
 }

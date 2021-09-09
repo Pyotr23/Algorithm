@@ -20,27 +20,27 @@ namespace Codewars.Five.DirectionsReduction
                 {"WEST", "EAST"},
                 {"EAST", "WEST"}
             };
-            
-            var list = new List<string>();
+
+            var list = new LinkedList<string>();
             
             foreach (var direction in arr)
             {
                 if (list.Count == 0)
                 {
                     
-                    list.Add(direction);
+                    list.AddLast(direction);
                     continue;
                 }
                 
                 var oppositeDirection = directions[direction];
                  
-                if (list.Last() == oppositeDirection)
+                if (list.Last?.Value == oppositeDirection)
                 {
-                    list.RemoveAt(list.Count - 1);
+                    list.RemoveLast();
                     continue;
                 }
                 
-                list.Add(direction);
+                list.AddLast(direction);
             }
 
             return list.ToArray();

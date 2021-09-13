@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 kyu", "5 kyu", "{590873BA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsReduction", "Codewars\DirectionsReduction\DirectionsReduction.csproj", "{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissingKeyMadness", "Codewars\MissingKeyMadness\MissingKeyMadness.csproj", "{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,5 +76,6 @@ Global
 		{EA408C60-297E-4BBF-8237-7AF3B91DCA47} = {87D57437-1811-487C-86FA-AC0674E7E361}
 		{590873BA-32BF-42CD-9440-A500C5355E1F} = {13EA1B5C-248D-4324-A4C4-5D1AD94D1679}
 		{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC} = {590873BA-32BF-42CD-9440-A500C5355E1F}
+		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 	EndGlobalSection
 EndGlobal

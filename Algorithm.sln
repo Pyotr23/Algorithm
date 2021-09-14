@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsReduction", "Code
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissingKeyMadness", "Codewars\MissingKeyMadness\MissingKeyMadness.csproj", "{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LastDigitSymmetry", "Codewars\LastDigitSymmetry\LastDigitSymmetry.csproj", "{41A0F161-94B2-45A1-856C-DF72F798D9CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41A0F161-94B2-45A1-856C-DF72F798D9CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41A0F161-94B2-45A1-856C-DF72F798D9CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41A0F161-94B2-45A1-856C-DF72F798D9CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41A0F161-94B2-45A1-856C-DF72F798D9CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,5 +83,6 @@ Global
 		{590873BA-32BF-42CD-9440-A500C5355E1F} = {13EA1B5C-248D-4324-A4C4-5D1AD94D1679}
 		{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 		{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0} = {590873BA-32BF-42CD-9440-A500C5355E1F}
+		{41A0F161-94B2-45A1-856C-DF72F798D9CE} = {87D57437-1811-487C-86FA-AC0674E7E361}
 	EndGlobalSection
 EndGlobal

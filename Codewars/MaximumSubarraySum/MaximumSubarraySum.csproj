@@ -3,6 +3,8 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Corewars.Five.MaximumSubarraySum</AssemblyName>
+        <RootNamespace>Corewars.Five.MaximumSubarraySum</RootNamespace>
     </PropertyGroup>
 
 </Project>

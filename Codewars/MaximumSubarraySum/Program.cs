@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MaximumSubarraySum
+namespace Corewars.Five.MaximumSubarraySum
 {
     class Program
     {

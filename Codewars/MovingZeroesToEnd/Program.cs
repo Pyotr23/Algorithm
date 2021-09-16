@@ -16,27 +16,19 @@ namespace Corewars.Five.MovingZeroesToEnd
         {
             if (arr.Length is 0 or 1)
                 return arr;
+
+            var result = new int[arr.Length];
             
-            for (var i = 1; i < arr.Length; i++)
+            for (int i = 0, j = 0; i < arr.Length; i++)
             {
                 if (arr[i] == 0)
                     continue;
-                
-                if (arr[i - 1] == 0)
-                    SwapWithPrevious(arr, i);
+
+                result[j] = arr[i];
+                j++;
             }
 
-            return arr;
-        }
-
-        private static void SwapWithPrevious(int[] array, int index)
-        {
-            var temp = array[index];
-            array[index] = array[index - 1];
-            array[index - 1] = temp;
-
-            if (index - 2 >= 0 && array[index - 2] == 0)
-                SwapWithPrevious(array, index - 1);
+            return result;
         }
     }
 }

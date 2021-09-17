@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximumSubarraySum", "Codew
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovingZeroesToEnd", "Codewars\MovingZeroesToEnd\MovingZeroesToEnd.csproj", "{4F046A59-D66D-4075-A909-BF4CC2E53831}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationsOnSequences", "Codewars\OperationsOnSequences\OperationsOnSequences.csproj", "{1DCB984D-DA58-4946-9267-C6C4C518D2DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{4F046A59-D66D-4075-A909-BF4CC2E53831}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F046A59-D66D-4075-A909-BF4CC2E53831}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F046A59-D66D-4075-A909-BF4CC2E53831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DCB984D-DA58-4946-9267-C6C4C518D2DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DCB984D-DA58-4946-9267-C6C4C518D2DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DCB984D-DA58-4946-9267-C6C4C518D2DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DCB984D-DA58-4946-9267-C6C4C518D2DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -98,5 +104,6 @@ Global
 		{41A0F161-94B2-45A1-856C-DF72F798D9CE} = {87D57437-1811-487C-86FA-AC0674E7E361}
 		{A72237D6-FCCE-47EA-9D37-68D3BA047584} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 		{4F046A59-D66D-4075-A909-BF4CC2E53831} = {590873BA-32BF-42CD-9440-A500C5355E1F}
+		{1DCB984D-DA58-4946-9267-C6C4C518D2DA} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 	EndGlobalSection
 EndGlobal

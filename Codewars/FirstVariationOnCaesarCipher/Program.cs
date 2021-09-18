@@ -6,40 +6,51 @@ namespace Codewars.Five.FirstVariationOnCaesarCipher
 {
     class Program
     {
+        private const string Alphabet = "abcdefghijklmnopqrstuvwxyz";
+        private const string ReverseAlphabet = "zyxwvutsrqponmlkjihgfedcba";
+        private static readonly int AlphabetLength = Alphabet.Length;
+
         static void Main(string[] args)
         {
-            // var str = "I should have known that you would have a perfect answer for me!!!";
-            var str = "I should have known that you would have a perfect answer for me!!!";
-            var encoded = movingShift(str, 1);
-            Console.WriteLine(demovingShift(encoded, 1));
+            const string? str = "I should have known that you would have a perfect answer for me!!!";
+            const int shift = 1;
+            var encoded = movingShift(str, shift);
+            Console.WriteLine(string.Concat(encoded));
+            Console.WriteLine(demovingShift(encoded, shift));
         }
         
         public static List<string> movingShift(string s, int shift)
         {
             var bundles = Split(s);
-            var alphabet = "abcdefghijklmnopqrstuvwxyz";
             var encodedBundles = new List<string>(5);
+            
             foreach (var bundle in bundles)
             {
-                var characters = new Queue<char>();
+                var encryptedChars = new Queue<char>();
+                
                 for (var i = 0; i < bundle.Length; i++, shift++)
                 {
-                    var character = bundle[i];
+                    var current = bundle[i];
                     
-                    if (!char.IsLetter(character))
+                    if (!char.IsLetter(current))
                     {
-                        characters.Enqueue(character);
+                        encryptedChars.Enqueue(current);
                         continue;
                     }
 
-                    var isUpper = char.IsUpper(character);
-                    var index = alphabet.IndexOf(char.ToLower(character));
-                    var newIndex = (index + shift) % 26;
-                    characters.Enqueue(isUpper 
-                        ? char.ToUpper(alphabet[newIndex])
-                        : alphabet[newIndex]);
+                    var isUpper = char.IsUpper(current);
+                    current = char.ToLower(current);
+                    var currentIndex = Alphabet.IndexOf(current);
+                    var shiftedIndex = currentIndex + shift;
+                    var encryptedChar = GetShiftedChar(shiftedIndex);
+                    
+                    encryptedChar = isUpper
+                        ? char.ToUpper(encryptedChar)
+                        : encryptedChar;
+
+                    encryptedChars.Enqueue(encryptedChar);
                 }
-                encodedBundles.Add(string.Concat(characters));
+                encodedBundles.Add(string.Concat(encryptedChars));
             }
             return encodedBundles;
         }
@@ -47,30 +58,48 @@ namespace Codewars.Five.FirstVariationOnCaesarCipher
         public static string demovingShift(List<string> s, int shift)
         {
             var encodedString = string.Concat(s);
-            var result = new Queue<char>();
-            var alphabet = "abcdefghijklmnopqrstuvwxyz";
-            var reverseAlphabet = string.Concat(alphabet.Reverse());
+            var decryptedChars = new Queue<char>();
+            
             for (var i = 0; i < encodedString.Length; i++, shift++)
             {
-                var character = encodedString[i];
-                if (!char.IsLetter(character))
+                var current = encodedString[i];
+                
+                if (!char.IsLetter(current))
                 {
-                    result.Enqueue(character);
+                    decryptedChars.Enqueue(current);
                     continue;
                 }
                 
-                var isUpper = char.IsUpper(character);
-                var index = alphabet.IndexOf(char.ToLower(character));
-                var shiftIndex = index - shift;
-                var newChar = shiftIndex >= 0
-                    ? alphabet[shiftIndex]
-                    : reverseAlphabet[(Math.Abs(shiftIndex) - 1) % 26];
-                result.Enqueue(isUpper 
-                    ? char.ToUpper(newChar)
-                    : newChar);
+                var isUpper = char.IsUpper(current);
+                current = char.ToLower(current);
+                var currentIndex = Alphabet.IndexOf(current);
+                var shiftedIndex = currentIndex - shift;
+
+                var decryptedChar = GetShiftedChar(shiftedIndex);
+
+                decryptedChar = isUpper
+                    ? char.ToUpper(decryptedChar)
+                    : decryptedChar;
+                
+                decryptedChars.Enqueue(decryptedChar);
             }
                 
-            return string.Concat(result);
+            return string.Concat(decryptedChars);
+        }
+
+        private static char GetShiftedChar(int index)
+        {
+            var decryptedChar = ' ';
+            
+            if (index >= 0)
+                decryptedChar = Alphabet[index % AlphabetLength];
+            else
+            {
+                index = (Math.Abs(index) - 1) % AlphabetLength;
+                decryptedChar = ReverseAlphabet[index];
+            }
+
+            return decryptedChar;
         }
 
         private static List<string> Split(string text)
@@ -79,27 +108,14 @@ namespace Codewars.Five.FirstVariationOnCaesarCipher
             var maxBundleLength = (int) Math.Ceiling((double) length / 5);
             var bundles = new List<string>(5);
             var bundlesLength = 0;
+            
             for (var i = 0; i < 5; i++)
             {
-                string bundle;
-                if (i <= 2)
-                {
-                    bundle = text.Substring(maxBundleLength * i, maxBundleLength);
-                    bundlesLength += maxBundleLength;
-                }
-                else if (i == 3)
-                {
-                    var fourthBundleLength = Math.Min(maxBundleLength, length - bundlesLength);
-                    bundle = text.Substring(maxBundleLength * i, fourthBundleLength);
-                    bundlesLength += fourthBundleLength;
-                }
-                else
-                {
-                    bundle = bundlesLength == length
-                        ? string.Empty
-                        : text[bundlesLength..];
-                }
-
+                var bundleLength = Math.Min(maxBundleLength, length - bundlesLength);
+                var startIndex = Math.Min(maxBundleLength * i, length);
+                var bundle = text.Substring(startIndex, bundleLength);
+                
+                bundlesLength += bundleLength;
                 bundles.Add(bundle);
             }
 

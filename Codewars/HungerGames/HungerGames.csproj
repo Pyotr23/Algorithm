@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Codewars.Five.HungerGames</AssemblyName>
+        <RootNamespace>Codewars.Five.HungerGames</RootNamespace>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+</Project>

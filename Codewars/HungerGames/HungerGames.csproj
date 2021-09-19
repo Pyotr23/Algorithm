@@ -5,7 +5,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>Codewars.Five.HungerGames</AssemblyName>
         <RootNamespace>Codewars.Five.HungerGames</RootNamespace>
-        <Nullable>disable</Nullable>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
 </Project>

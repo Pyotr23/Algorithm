@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationsOnSequences", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstVariationOnCaesarCipher", "Codewars\FirstVariationOnCaesarCipher\FirstVariationOnCaesarCipher.csproj", "{6B956AA7-9A26-43C6-9630-211D4E41C310}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HungerGames", "Codewars\HungerGames\HungerGames.csproj", "{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{6B956AA7-9A26-43C6-9630-211D4E41C310}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B956AA7-9A26-43C6-9630-211D4E41C310}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B956AA7-9A26-43C6-9630-211D4E41C310}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -112,5 +118,6 @@ Global
 		{4F046A59-D66D-4075-A909-BF4CC2E53831} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 		{1DCB984D-DA58-4946-9267-C6C4C518D2DA} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 		{6B956AA7-9A26-43C6-9630-211D4E41C310} = {590873BA-32BF-42CD-9440-A500C5355E1F}
+		{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 	EndGlobalSection
 EndGlobal

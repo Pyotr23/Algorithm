@@ -21,22 +21,21 @@ namespace Codewars.Five.HungerGames
         private const string Lion  = "lion";
         private const string Panda  = "panda";
 
-        private static readonly Dictionary<string, IEnumerable<string>> EatingRules = new()
-        {
-            {Antelope, new[] {Grass}},
-            {BigFish, new[] {LittleFish}},
-            {Bug, new[] {Leaves}},
-            {Bear, new[] {BigFish, Bug, Chicken, Cow, Leaves, Sheep}},
-            {Chicken, new[] {Bug,}},
-            {Cow, new[] {Grass}},
-            {Fox, new[] {Chicken, Sheep}},
-            {Giraffe, new[] {Leaves}},
-            {Lion, new[] {Antelope, Cow}},
-            {Panda, new[] {Leaves}},
-            {Sheep, new[] {Grass}}
-        };
-        private static LinkedList<string> _zooLinkedList;
-        private static List<string> _messages;
+        private static readonly Dictionary<string, IEnumerable<string>> EatingRules 
+            = new Dictionary<string, IEnumerable<string>>()
+            {
+                {Antelope, new[] {Grass}},
+                {BigFish, new[] {LittleFish}},
+                {Bug, new[] {Leaves}},
+                {Bear, new[] {BigFish, Bug, Chicken, Cow, Leaves, Sheep}},
+                {Chicken, new[] {Bug,}},
+                {Cow, new[] {Grass}},
+                {Fox, new[] {Chicken, Sheep}},
+                {Giraffe, new[] {Leaves}},
+                {Lion, new[] {Antelope, Cow}},
+                {Panda, new[] {Leaves}},
+                {Sheep, new[] {Grass}}
+            };
 
         private static void Main(string[] args)
         {
@@ -48,64 +47,67 @@ namespace Codewars.Five.HungerGames
         public static string[] WhoEatsWho(string zoo)
         {
             if (string.IsNullOrEmpty(zoo))
-                return new string[] {string.Empty, string.Empty};
-            _zooLinkedList = new LinkedList<string>();
-            _messages = new List<string>();
-            _messages.Add(zoo);
+                return new string[] {string.Empty};
             
-            var animals = zoo.Split(',');
-            foreach (var animal in animals)
-                _zooLinkedList.AddLast(animal);
+            var zooLinkedList = new LinkedList<string>();
+
+            var messages = new List<string>();
+            messages.Add(zoo);
+
+            foreach (var animal in zoo.Split(','))
+                zooLinkedList.AddLast(animal);
            
-            Eat(_zooLinkedList.First, true);
-            _messages.Add(string.Join(",", _zooLinkedList));
-            return _messages.ToArray();
+            Eat(zooLinkedList.First, messages);
+            
+            messages.Add(string.Join(",", zooLinkedList));
+            
+            return messages.ToArray();
         }
 
-        private static void Eat(LinkedListNode<string> animalNode, bool checkNext = false)
+        private static void Eat(LinkedListNode<string> animalNode, List<string> messages)
         {
             if (CanEatLeftAnimal(animalNode))
             {
-                _messages.Add($"{animalNode.Value} eats {animalNode.Previous.Value}");
-                _zooLinkedList.Remove(animalNode.Previous);
+                messages.Add($"{animalNode.Value} eats {animalNode.Previous.Value}");
+                
+                animalNode.List.Remove(animalNode.Previous);
+                
                 if (animalNode.Previous != null)
                 {
-                    Eat(animalNode.Previous, true);
+                    Eat(animalNode.Previous, messages);
                     return;
                 }
             }
             
-            EatRight(animalNode);
+            EatRight(animalNode, messages);
 
-            if (checkNext)
-            {
-                if (animalNode?.Next == null)
-                {
-                    return;
-                }
+            if (animalNode?.Next == null)
+                return;
                 
-                Eat(animalNode.Next, true);
-            }
+            Eat(animalNode.Next, messages);
         }
 
         private static bool CanEatLeftAnimal(LinkedListNode<string> animalNode)
         {
             if (animalNode == null)
                 return false;
-            var leftAnimal = animalNode?.Previous;
+            
+            var leftAnimal = animalNode.Previous;
             return leftAnimal != null 
                    && EatingRules.ContainsKey(animalNode.Value)
                    && EatingRules[animalNode.Value].Contains(leftAnimal.Value);
         }
 
-        private static void EatRight(LinkedListNode<string> animalNode)
+        private static void EatRight(LinkedListNode<string> animalNode, List<string> messages)
         {
             if (!CanEatRightAnimal(animalNode)) 
                 return;
             
-            _messages.Add($"{animalNode.Value} eats {animalNode.Next.Value}");
-            _zooLinkedList.Remove(animalNode.Next);
-            EatRight(animalNode);
+            messages.Add($"{animalNode.Value} eats {animalNode.Next.Value}");
+            
+            animalNode.List.Remove(animalNode.Next);
+            
+            EatRight(animalNode, messages);
         }
         
         private static bool CanEatRightAnimal(LinkedListNode<string> animalNode)

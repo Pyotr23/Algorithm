@@ -6,53 +6,43 @@ namespace Codewars.Five.DotsAndBoxesValidator
 {
     internal static class Program
     {
-        private struct Box
-        {
-            private List<int[]> Sizes { get; };  
-            
-            private Box(int upperLeftCorner, int upperRightCorner, int lowerLeftCorner, int lowerRightCorner)
-            {
-                Sizes = new List<int[]>
-                {
-                    new[] {upperLeftCorner, upperRightCorner},
-                    new[] {upperRightCorner, lowerRightCorner},
-                    new[] {lowerLeftCorner, lowerRightCorner},
-                    new[] {upperLeftCorner, lowerLeftCorner}
-                };
-            }
-        }
-        
         static void Main(string[] args)
         {
-            var moves = new[]
-            {
-                new[]{0,1}, 
-                new[]{7,8}, 
-                new[]{1,2}, 
-                new[]{6,7}, 
-                new[]{0,3},
-                new[]{8,5}, 
-                new[]{3,4}, 
-                new[]{4,1}, 
-                new[]{4,5}, 
-                new[]{2,5}, 
-                new[]{7,4}, 
-                new[]{3,6}
-            };
-            Console.WriteLine(GetBoardSize(moves));
         }
         
         public static int[] DotsAndBoxes(int[][] r)
         {
-            return null;
-        }
-
-        private static int GetBoardSize(IEnumerable<int[]> moves)
-        {
-            var max = moves
-                .SelectMany(m => m)
-                .Max();
-            return (int) Math.Sqrt(max + 1);
+            int n = (int)Math.Round(Math.Sqrt(r.Max(x => x.Max()) + 1));
+            int[,] boxes = new int[n + 1, n + 1];
+            int player = 1;
+            foreach (var a in r)
+            {
+                bool oneMore = false;
+                int rowFrom = a.Min() / n;
+                int colFrom = a.Min() % n;
+                int rowTo = a.Max() / n;
+                int colTo = a.Max() % n;
+                if (rowFrom == rowTo)
+                {
+                    boxes[rowFrom, colFrom + 1]++;
+                    if (boxes[rowFrom, colFrom + 1] == 4) { boxes[rowFrom, colFrom + 1] = -player; oneMore = true; }
+                    boxes[rowFrom + 1, colFrom + 1]++;
+                    if (boxes[rowFrom + 1, colFrom + 1] == 4) { boxes[rowFrom + 1, colFrom + 1] = -player; oneMore = true; }
+                }
+                else
+                {
+                    boxes[rowFrom + 1, colFrom]++;
+                    if (boxes[rowFrom + 1, colFrom] == 4) { boxes[rowFrom + 1, colFrom] = -player; oneMore = true; }
+                    boxes[rowFrom + 1, colFrom + 1]++;
+                    if (boxes[rowFrom + 1, colFrom + 1] == 4) { boxes[rowFrom + 1, colFrom + 1] = -player; oneMore = true; }
+                }
+                if (!oneMore)
+                    player = 3 - player;
+            }
+            int sum1 = 0, sum2 = 0;
+            for (int i = 1; i < n; i++)
+            for (int j = 1; j < n; j++) if (boxes[i, j] == -1) sum1++; else sum2++;
+            return new int[] { sum1, sum2 };
         }
     }
 }

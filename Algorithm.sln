@@ -17,29 +17,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Codewars", "Codewars", "{13
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 kyu", "Codewars\4 kyu", "{2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 kyu", "6 kyu", "{87D57437-1811-487C-86FA-AC0674E7E361}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 kyu", "Codewars\6 kyu", "{87D57437-1811-487C-86FA-AC0674E7E361}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixAddition", "Codewars\MatrixAddition\MatrixAddition.csproj", "{EA408C60-297E-4BBF-8237-7AF3B91DCA47}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 kyu", "5 kyu", "{590873BA-32BF-42CD-9440-A500C5355E1F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 kyu", "Codewars\5 kyu", "{590873BA-32BF-42CD-9440-A500C5355E1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsReduction", "Codewars\DirectionsReduction\DirectionsReduction.csproj", "{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsReduction", "Codewars\5 kyu\DirectionsReduction\DirectionsReduction.csproj", "{82F9C0AF-6C31-48CA-9356-D46B09C8DCFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissingKeyMadness", "Codewars\MissingKeyMadness\MissingKeyMadness.csproj", "{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissingKeyMadness", "Codewars\5 kyu\MissingKeyMadness\MissingKeyMadness.csproj", "{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LastDigitSymmetry", "Codewars\LastDigitSymmetry\LastDigitSymmetry.csproj", "{41A0F161-94B2-45A1-856C-DF72F798D9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LastDigitSymmetry", "Codewars\5 kyu\LastDigitSymmetry\LastDigitSymmetry.csproj", "{41A0F161-94B2-45A1-856C-DF72F798D9CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximumSubarraySum", "Codewars\MaximumSubarraySum\MaximumSubarraySum.csproj", "{A72237D6-FCCE-47EA-9D37-68D3BA047584}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximumSubarraySum", "Codewars\5 kyu\MaximumSubarraySum\MaximumSubarraySum.csproj", "{A72237D6-FCCE-47EA-9D37-68D3BA047584}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovingZeroesToEnd", "Codewars\MovingZeroesToEnd\MovingZeroesToEnd.csproj", "{4F046A59-D66D-4075-A909-BF4CC2E53831}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovingZeroesToEnd", "Codewars\5 kyu\MovingZeroesToEnd\MovingZeroesToEnd.csproj", "{4F046A59-D66D-4075-A909-BF4CC2E53831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationsOnSequences", "Codewars\OperationsOnSequences\OperationsOnSequences.csproj", "{1DCB984D-DA58-4946-9267-C6C4C518D2DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationsOnSequences", "Codewars\5 kyu\OperationsOnSequences\OperationsOnSequences.csproj", "{1DCB984D-DA58-4946-9267-C6C4C518D2DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstVariationOnCaesarCipher", "Codewars\FirstVariationOnCaesarCipher\FirstVariationOnCaesarCipher.csproj", "{6B956AA7-9A26-43C6-9630-211D4E41C310}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstVariationOnCaesarCipher", "Codewars\5 kyu\FirstVariationOnCaesarCipher\FirstVariationOnCaesarCipher.csproj", "{6B956AA7-9A26-43C6-9630-211D4E41C310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HungerGames", "Codewars\HungerGames\HungerGames.csproj", "{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HungerGames", "Codewars\5 kyu\HungerGames\HungerGames.csproj", "{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotsAndBoxesValidator", "Codewars\DotsAndBoxesValidator\DotsAndBoxesValidator.csproj", "{8E6FCA20-C5FE-4281-BEC4-16A7DA20B51F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotsAndBoxesValidator", "Codewars\5 kyu\DotsAndBoxesValidator\DotsAndBoxesValidator.csproj", "{8E6FCA20-C5FE-4281-BEC4-16A7DA20B51F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

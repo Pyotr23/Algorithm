@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 kyu", "Codewars\4 kyu", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 kyu", "Codewars\6 kyu", "{87D57437-1811-487C-86FA-AC0674E7E361}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixAddition", "Codewars\MatrixAddition\MatrixAddition.csproj", "{EA408C60-297E-4BBF-8237-7AF3B91DCA47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixAddition", "Codewars\6 kyu\MatrixAddition\MatrixAddition.csproj", "{EA408C60-297E-4BBF-8237-7AF3B91DCA47}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 kyu", "Codewars\5 kyu", "{590873BA-32BF-42CD-9440-A500C5355E1F}"
 EndProject
@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectionsReduction", "Code
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MissingKeyMadness", "Codewars\5 kyu\MissingKeyMadness\MissingKeyMadness.csproj", "{635C45CE-BB43-4C7B-B0DC-EEA4AD6CC3F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LastDigitSymmetry", "Codewars\5 kyu\LastDigitSymmetry\LastDigitSymmetry.csproj", "{41A0F161-94B2-45A1-856C-DF72F798D9CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LastDigitSymmetry", "Codewars\6 kyu\LastDigitSymmetry\LastDigitSymmetry.csproj", "{41A0F161-94B2-45A1-856C-DF72F798D9CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximumSubarraySum", "Codewars\5 kyu\MaximumSubarraySum\MaximumSubarraySum.csproj", "{A72237D6-FCCE-47EA-9D37-68D3BA047584}"
 EndProject
@@ -40,6 +40,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HungerGames", "Codewars\5 kyu\HungerGames\HungerGames.csproj", "{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotsAndBoxesValidator", "Codewars\5 kyu\DotsAndBoxesValidator\DotsAndBoxesValidator.csproj", "{8E6FCA20-C5FE-4281-BEC4-16A7DA20B51F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HumanReadableTime", "Codewars\HumanReadableTime\HumanReadableTime.csproj", "{71A5C798-DBE7-426D-A1B5-4E86D5F03392}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{8E6FCA20-C5FE-4281-BEC4-16A7DA20B51F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E6FCA20-C5FE-4281-BEC4-16A7DA20B51F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E6FCA20-C5FE-4281-BEC4-16A7DA20B51F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71A5C798-DBE7-426D-A1B5-4E86D5F03392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71A5C798-DBE7-426D-A1B5-4E86D5F03392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71A5C798-DBE7-426D-A1B5-4E86D5F03392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71A5C798-DBE7-426D-A1B5-4E86D5F03392}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -126,5 +132,6 @@ Global
 		{6B956AA7-9A26-43C6-9630-211D4E41C310} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 		{89DE8EF5-EF80-49B4-BC30-5F7A58D5E23F} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 		{8E6FCA20-C5FE-4281-BEC4-16A7DA20B51F} = {590873BA-32BF-42CD-9440-A500C5355E1F}
+		{71A5C798-DBE7-426D-A1B5-4E86D5F03392} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 	EndGlobalSection
 EndGlobal

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Codewars.Five.ValidParentheses
 {
@@ -12,26 +11,25 @@ namespace Codewars.Five.ValidParentheses
 
         private static bool ValidParentheses(string input)
         {
-            if (string.IsNullOrEmpty(input))
-                return true;
-
-            var stack = new Stack<char>();
-
+            var count = 0;
             foreach (var letter in input)
             {
                 switch (letter)
                 {
                     case '(':
-                        stack.Push(letter);
+                        count++;
                         break;
                     case ')':
-                        if (stack.TryPop(out var lastParentheses) || lastParentheses == '(')
-                            break;
-                        return false;
+                    {
+                        count--;
+                        if (count < 0)
+                            return false;
+                        break;
+                    }
                 }
             }
             
-            return stack.Count == 0;
+            return count == 0;
         }
     }
 }

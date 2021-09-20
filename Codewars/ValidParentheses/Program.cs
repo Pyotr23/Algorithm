@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace Codewars.Five.ValidParentheses
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
             Console.WriteLine(ValidParentheses("(())((()())())"));
         }
-        
-        public static bool ValidParentheses(string input)
+
+        private static bool ValidParentheses(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return true;

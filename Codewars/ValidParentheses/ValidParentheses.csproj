@@ -5,6 +5,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>Codewars.Five.ValidParentheses</AssemblyName>
         <RootNamespace>Codewars.Five.ValidParentheses</RootNamespace>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
 </Project>

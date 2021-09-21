@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,11 +8,15 @@ namespace Codewars.Three.Calculator
 {
     class Program
     {
-        
+        // 12*-1
+        // 12* 123/-(-5 + 2)
+        // (1 - 2) + -(-(-(-4)))
+        // 1 - -(-(-(-4)))
+        // 12* 123/(-5 + 2)
         
         static void Main(string[] args)
         {
-            const string example = "2 / 2 + ( 3 * 4 ) - 6";
+            const string example = "-12*-1";
             Console.WriteLine(Evaluate(example));
         }
         
@@ -49,14 +54,14 @@ namespace Codewars.Three.Calculator
 
         private static string CalculateAllOccurrences(string example)
         {
-            const string highPriorityPattern  = @"\d*\.?\d+[/*]\d+\.?\d*";
-            example = CalculateOccurrences(example, highPriorityPattern);
+            const string highPriorityPattern  = @"-?\d*\.?\d+[/*]-?\d+\.?\d*";
+            example = CalculateOccurrences(example, highPriorityPattern, new[]{'*', '/'});
             
             const string lowPriorityPattern  = @"\d*\.?\d+[+-]\d+\.?\d*";
-            return CalculateOccurrences(example, lowPriorityPattern);
+            return CalculateOccurrences(example, lowPriorityPattern, new []{'+', '-'});
         }
 
-        private static string CalculateOccurrences(string example, string pattern)
+        private static string CalculateOccurrences(string example, string pattern, char[] splittingSigns)
         {
             var regex = new Regex(pattern);
             var matches = regex.Matches(example);
@@ -66,7 +71,7 @@ namespace Codewars.Three.Calculator
                 foreach (Match match in matches)
                 {
                     var operation = match.Value;
-                    var result = Calculate(operation);
+                    var result = Calculate(operation, splittingSigns);
                     example = example.Replace(operation, result);
                 }
                 matches = regex.Matches(example);
@@ -75,13 +80,12 @@ namespace Codewars.Three.Calculator
             return example;
         }
 
-        private static string Calculate(string operation)
+        private static string Calculate(string operation, char[] splittingSigns)
         {
-            var signs = new []{'*', '/', '+', '-'};
-            var stringDigits = operation.Split(signs);
+            var stringDigits = operation.Split(splittingSigns);
             var firstDigit = double.Parse(stringDigits[0]);
             var secondDigit = double.Parse(stringDigits[1]);
-            var sign = operation.First(c => !char.IsDigit(c));
+            var sign = operation.First(splittingSigns.Contains);
             var result = 0.0;
             
             switch (sign)

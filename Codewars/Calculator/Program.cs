@@ -16,7 +16,7 @@ namespace Codewars.Three.Calculator
         
         static void Main(string[] args)
         {
-            const string example = "-12*-1";
+            const string example = "2 / 2 + 3 * 4 - 6";
             Console.WriteLine(Evaluate(example));
         }
         
@@ -54,9 +54,9 @@ namespace Codewars.Three.Calculator
 
         private static string CalculateAllOccurrences(string example)
         {
-            const string highPriorityPattern  = @"-?\d*\.?\d+[/*]-?\d+\.?\d*";
-            example = CalculateOccurrences(example, highPriorityPattern, new[]{'*', '/'});
-            
+            var multiplier = new Multiplier(example);
+            example = multiplier.GetSimplifiedExpression();
+
             const string lowPriorityPattern  = @"\d*\.?\d+[+-]\d+\.?\d*";
             return CalculateOccurrences(example, lowPriorityPattern, new []{'+', '-'});
         }

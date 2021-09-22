@@ -4,16 +4,11 @@ using System.Text.RegularExpressions;
 
 namespace Codewars.Three.Calculator
 {
-    public class Multiplier : IArithmetic
+    internal sealed class Multiplier : Arithmetic
     {
-        private string _expression;
-
-        public Multiplier(string expression)
-        {
-            _expression = expression;
-        }
-
-        public string GetSimplifiedExpression()
+        internal Multiplier(string expression) : base(expression){ }
+        
+        internal override string GetSimplifiedExpression()
         {
             const string pattern = @"-?\d*\.?\d+[/*]-?\d+\.?\d*";
             var regex = new Regex(pattern);

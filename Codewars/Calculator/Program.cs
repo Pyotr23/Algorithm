@@ -16,7 +16,9 @@ namespace Codewars.Three.Calculator
         
         static void Main(string[] args)
         {
-            const string example = "2 / 2 + 3 * 4 - 6";
+            var example = "2 / 2 + 3 * 4 - 6";
+            Console.WriteLine(Evaluate(example));
+            example = "-12*-1";
             Console.WriteLine(Evaluate(example));
         }
         

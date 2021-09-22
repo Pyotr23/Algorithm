@@ -2,11 +2,11 @@
 {
     public abstract class Arithmetic
     {
-        protected string _expression;
+        protected string Expression;
 
         internal Arithmetic(string expression)
         {
-            _expression = expression;
+            Expression = expression;
         }
         
         internal abstract string GetSimplifiedExpression(); 

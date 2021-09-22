@@ -10,9 +10,9 @@ namespace Codewars.Three.Calculator
         
         internal override string GetSimplifiedExpression()
         {
-            const string pattern = @"-?\d*\.?\d+[/*]-?\d+\.?\d*";
+            const string pattern = @"-?\d*\.?\d+[/*]-?-?\d+\.?\d*";
             var regex = new Regex(pattern);
-            var matches = regex.Matches(_expression);
+            var matches = regex.Matches(Expression);
             
             while (matches.Count > 0)
             {
@@ -20,25 +20,26 @@ namespace Codewars.Three.Calculator
                 {
                     var operation = match.Value;
                     var result = MultiplyOrDivide(operation);
-                    _expression = _expression.Replace(operation, result);
+                    Expression = Expression.Replace(operation, result);
                 }
-                matches = regex.Matches(_expression);
+                matches = regex.Matches(Expression);
             }
 
-            return _expression;
+            return Expression;
         }
         
         private static string MultiplyOrDivide(string operation)
         {
+            operation = operation.Replace("--", "");
             var signs = new[] { '*', '/' };
             var currentSign = operation.First(signs.Contains);
             var stringDigits = operation.Split(currentSign);
-            var firstDigit = double.Parse(stringDigits[0]);
-            var secondDigit = double.Parse(stringDigits[1]);
+            var firstDigit = double.Parse(stringDigits[0], CultureInfo.InvariantCulture);
+            var secondDigit = double.Parse(stringDigits[1], CultureInfo.InvariantCulture);
             var result = currentSign == '*'
                 ? firstDigit * secondDigit
                 : firstDigit / secondDigit;
-            return result.ToString(CultureInfo.CurrentCulture);
+            return result.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

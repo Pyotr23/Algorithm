@@ -16,9 +16,11 @@ namespace Codewars.Three.Calculator
         
         static void Main(string[] args)
         {
-            var example = "2 / 2 + 3 * 4 - 6";
+            var example = "1 - -(-(-(-4)))"; // "2 / 2 + 3 * 4 - 6";
             Console.WriteLine(Evaluate(example));
             example = "-12*-1";
+            Console.WriteLine(Evaluate(example));
+            example = "12* 123/-(-5 + 2)";
             Console.WriteLine(Evaluate(example));
         }
         
@@ -28,7 +30,7 @@ namespace Codewars.Three.Calculator
             expression = string.Concat(symbols);
             expression = ExpandBrackets(expression);
             expression = CalculateAllOccurrences(expression);
-            return double.Parse(expression);
+            return double.Parse(expression, CultureInfo.InvariantCulture);
         }
 
         private static string ExpandBrackets(string expression)
@@ -59,54 +61,8 @@ namespace Codewars.Three.Calculator
             var multiplier = new Multiplier(example);
             example = multiplier.GetSimplifiedExpression();
 
-            const string lowPriorityPattern  = @"\d*\.?\d+[+-]\d+\.?\d*";
-            return CalculateOccurrences(example, lowPriorityPattern, new []{'+', '-'});
-        }
-
-        private static string CalculateOccurrences(string example, string pattern, char[] splittingSigns)
-        {
-            var regex = new Regex(pattern);
-            var matches = regex.Matches(example);
-            
-            while (matches.Count > 0)
-            {
-                foreach (Match match in matches)
-                {
-                    var operation = match.Value;
-                    var result = Calculate(operation, splittingSigns);
-                    example = example.Replace(operation, result);
-                }
-                matches = regex.Matches(example);
-            }
-
-            return example;
-        }
-
-        private static string Calculate(string operation, char[] splittingSigns)
-        {
-            var stringDigits = operation.Split(splittingSigns);
-            var firstDigit = double.Parse(stringDigits[0]);
-            var secondDigit = double.Parse(stringDigits[1]);
-            var sign = operation.First(splittingSigns.Contains);
-            var result = 0.0;
-            
-            switch (sign)
-            {
-                case '*':
-                    result = firstDigit * secondDigit;
-                    break;
-                case '/':
-                    result = firstDigit / secondDigit;
-                    break;
-                case '+':
-                    result = firstDigit + secondDigit;
-                    break;
-                case '-':
-                    result = firstDigit - secondDigit;
-                    break;
-            }
-
-            return result.ToString(CultureInfo.CurrentCulture);
+            var adder = new Adder(example);
+            return adder.GetSimplifiedExpression();
         }
     }
 }

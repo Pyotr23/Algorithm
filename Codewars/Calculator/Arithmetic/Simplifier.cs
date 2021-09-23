@@ -1,10 +1,10 @@
-﻿namespace Codewars.Three.Calculator
+﻿namespace Codewars.Three.Calculator.Arithmetic
 {
-    public abstract class Arithmetic
+    public abstract class Simplifier
     {
         protected string Expression;
 
-        internal Arithmetic(string expression)
+        internal Simplifier(string expression)
         {
             Expression = expression;
         }

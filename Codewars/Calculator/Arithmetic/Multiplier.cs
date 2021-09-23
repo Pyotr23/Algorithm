@@ -1,10 +1,11 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
+using Codewars.Three.Calculator.Extensions;
+using Codewars.Three.Calculator.Helpers;
 
-namespace Codewars.Three.Calculator
+namespace Codewars.Three.Calculator.Arithmetic
 {
-    internal sealed class Multiplier : Arithmetic
+    internal sealed class Multiplier : Simplifier
     {
         internal Multiplier(string expression) : base(expression){ }
         
@@ -34,12 +35,12 @@ namespace Codewars.Three.Calculator
             var signs = new[] { '*', '/' };
             var currentSign = operation.First(signs.Contains);
             var stringDigits = operation.Split(currentSign);
-            var firstDigit = double.Parse(stringDigits[0], CultureInfo.InvariantCulture);
-            var secondDigit = double.Parse(stringDigits[1], CultureInfo.InvariantCulture);
+            var firstDigit = stringDigits[0].ToDouble();
+            var secondDigit = stringDigits[1].ToDouble();;
             var result = currentSign == '*'
                 ? firstDigit * secondDigit
                 : firstDigit / secondDigit;
-            return result.ToString(CultureInfo.InvariantCulture);
+            return result.ToString(CultureHelper.Culture);
         }
     }
 }

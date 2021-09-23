@@ -1,13 +1,14 @@
-﻿using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
+using Codewars.Three.Calculator.Extensions;
+using Codewars.Three.Calculator.Helpers;
 
-namespace Codewars.Three.Calculator
+namespace Codewars.Three.Calculator.Arithmetic
 {
-    public class OperationCreator
+    public class AddingMachine
     {
         private string _firstDigit = string.Empty;
         private string _secondDigit = string.Empty;
-        private char? _sign = null;
+        private char? _sign;
 
         internal void Push(char letter)
         {
@@ -19,7 +20,7 @@ namespace Codewars.Three.Calculator
 
             if (_sign == null)
             {
-                if (char.IsDigit(letter) || letter == '.' || !_firstDigit.Any(char.IsDigit))
+                if (IsNeedFill(_firstDigit, letter))
                 {
                     _firstDigit += letter;
                     return;
@@ -29,13 +30,7 @@ namespace Codewars.Three.Calculator
                 return;
             }
 
-            if (string.IsNullOrEmpty(_secondDigit))
-            {
-                _secondDigit += letter;
-                return;
-            }
-
-            if (char.IsDigit(letter) || letter == '.' || !_secondDigit.Any(char.IsDigit))
+            if (string.IsNullOrEmpty(_secondDigit) || IsNeedFill(_secondDigit, letter))
             {
                 _secondDigit += letter;
                 return;
@@ -55,15 +50,23 @@ namespace Codewars.Three.Calculator
             
         }
 
+        private static bool IsNeedFill(string digit, char letter)
+        {
+            return char.IsDigit(letter)
+                   || letter == '.'
+                   || !digit.Any(char.IsDigit);
+        }
+
         private void Calculate()
         {
             _firstDigit = _firstDigit.Replace("--", "");
             _secondDigit = _secondDigit.Replace("--", "");
-            var result = _sign == '+'
-                ? double.Parse(_firstDigit, CultureInfo.InvariantCulture) + double.Parse(_secondDigit, CultureInfo.InvariantCulture)
-                : double.Parse(_firstDigit, CultureInfo.InvariantCulture) - double.Parse(_secondDigit, CultureInfo.InvariantCulture);
             
-            _firstDigit = result.ToString(CultureInfo.InvariantCulture);
+            var result = _sign == '+'
+                ? _firstDigit.ToDouble() + _secondDigit.ToDouble()
+                : _firstDigit.ToDouble() - _secondDigit.ToDouble();
+            
+            _firstDigit = result.ToString(CultureHelper.Culture);
         }
     }
 }

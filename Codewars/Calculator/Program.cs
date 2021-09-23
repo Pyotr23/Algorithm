@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
+using Codewars.Three.Calculator.Arithmetic;
+using Codewars.Three.Calculator.Extensions;
 
 namespace Codewars.Three.Calculator
 {
@@ -29,8 +28,8 @@ namespace Codewars.Three.Calculator
             var symbols = expression.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             expression = string.Concat(symbols);
             expression = ExpandBrackets(expression);
-            expression = CalculateAllOccurrences(expression);
-            return double.Parse(expression, CultureInfo.InvariantCulture);
+            expression = Calculate(expression);
+            return expression.ToDouble();
         }
 
         private static string ExpandBrackets(string expression)
@@ -47,7 +46,7 @@ namespace Codewars.Three.Calculator
                     var operationWithoutBrackets = operation
                         .TrimStart('(')
                         .TrimEnd(')');
-                    var result = CalculateAllOccurrences(operationWithoutBrackets);
+                    var result = Calculate(operationWithoutBrackets);
                     expression = expression.Replace(operation, result);
                 }
                 matches = regex.Matches(expression);
@@ -56,7 +55,7 @@ namespace Codewars.Three.Calculator
             return expression;
         }
 
-        private static string CalculateAllOccurrences(string example)
+        private static string Calculate(string example)
         {
             var multiplier = new Multiplier(example);
             example = multiplier.GetSimplifiedExpression();

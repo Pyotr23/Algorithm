@@ -53,6 +53,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangeExtraction", "Codewars
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberToEnglishConverter", "Codewars\NumberToEnglishConverter\NumberToEnglishConverter.csproj", "{6CBD766F-33E2-4A33-B828-1C4C300A9BA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentsStripper", "Codewars\CommentsStripper\CommentsStripper.csproj", "{7D617EEA-8BB1-452E-9F49-1DE2CA6C6D16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -131,6 +133,10 @@ Global
 		{6CBD766F-33E2-4A33-B828-1C4C300A9BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CBD766F-33E2-4A33-B828-1C4C300A9BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CBD766F-33E2-4A33-B828-1C4C300A9BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D617EEA-8BB1-452E-9F49-1DE2CA6C6D16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D617EEA-8BB1-452E-9F49-1DE2CA6C6D16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D617EEA-8BB1-452E-9F49-1DE2CA6C6D16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D617EEA-8BB1-452E-9F49-1DE2CA6C6D16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,5 +170,6 @@ Global
 		{5A455748-22F0-43D4-B922-F8814C2FD397} = {A6524852-6E29-46A2-9861-27903912AAC2}
 		{E9D8454B-9D69-4B99-BAC3-4EE101B086D6} = {2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}
 		{6CBD766F-33E2-4A33-B828-1C4C300A9BA8} = {590873BA-32BF-42CD-9440-A500C5355E1F}
+		{7D617EEA-8BB1-452E-9F49-1DE2CA6C6D16} = {2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}
 	EndGlobalSection
 EndGlobal

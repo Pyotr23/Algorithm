@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Codewars.Five.NumberToEnglishConverter
 {
-    class Program
+    internal static class Program
     {
-        private static readonly Dictionary<int, string> _dictionary = new Dictionary<int, string>()
+        private static readonly Dictionary<int, string> Dictionary = new()
         {
             { 0, "zero" },
             { 1, "one" },
@@ -39,41 +39,51 @@ namespace Codewars.Five.NumberToEnglishConverter
             { 1000, "thousand"}
         };
 
-        static void Main(string[] args)
+        internal static void Main()
         {
             Console.WriteLine(NumberToEnglish(6800));
+            Console.WriteLine(NumberToEnglish(99999));
         }
-        
-        public static string NumberToEnglish(int n)
+
+        private static string NumberToEnglish(int n)
         {
-            var result = string.Empty;
+            switch (n)
+            {
+                case < 0 or > 99999:
+                    return string.Empty;
+                case 0:
+                    return Dictionary[0];
+            }
             
-            if (n < 0 || n > 99999)
-                return result;
-        
+            var result = new List<string>(10);
+
             if (n / 1000 > 0)
             {
-                result += ConvertNumberLessHundred(n / 1000) + " " + _dictionary[1000];
+                result.Add(ConvertNumberLessHundred(n / 1000));
+                result.Add(Dictionary[1000]);
                 n %= 1000;
             }
 
             if (n / 100 > 0)
             {
-                result += " " + _dictionary[n / 100] + " " + _dictionary[100];
+                result.Add(ConvertNumberLessHundred(n / 100));
+                result.Add(Dictionary[100]);
                 n %= 100;
             }
 
-            if (n != 0 || string.IsNullOrEmpty(result))
-                result += " " + ConvertNumberLessHundred(n);
+            result.Add(ConvertNumberLessHundred(n));
 
-            return result.TrimStart();
+            return string.Join(" ", result);
         }
         
         private static string ConvertNumberLessHundred(int number)
         {
-            return _dictionary.ContainsKey(number)
-                ? _dictionary[number]
-                : _dictionary[number / 10 * 10] + " " + _dictionary[number % 10];
+            if (number == 0)
+                return string.Empty;
+            
+            return Dictionary.ContainsKey(number)
+                ? Dictionary[number]
+                : Dictionary[number / 10 * 10] + " " + Dictionary[number % 10];
         }
     }
 }

@@ -6,6 +6,9 @@ namespace Codewars.Four.BreadcrumbGenerator
 {
     class Program
     {
+        private static readonly HashSet<string> IgnoreWords = new HashSet<string>(
+            new[] { "the", "of", "in", "from", "by", "with", "and", "or", "for", "to", "at", "a" });
+        
         static void Main(string[] args)
         {
             var text = string.Empty;
@@ -14,44 +17,41 @@ namespace Codewars.Four.BreadcrumbGenerator
             text = "www.microsoft.com/docs/index.htm";
             text = "www.very-long-site_name-to-make-a-silly-yet-meaningful-example.com/users/giacomo-sorbi";
             text = "https://www.agcpartners.co.uk/index.html";
-            text = "github.com/research-cauterization-the/";
+            text = "mysite.com/pictures/holidays.html";
             Console.WriteLine(GenerateBC(text, " : "));
         }
         
         public static string GenerateBC(string url, string separator)
         {
-            var ignoreSymbols = new[] { '#', '?' };
-            var clearUrl = string.Concat(url.TakeWhile(c => !ignoreSymbols.Contains(c)));
-            
-            var urlParts = clearUrl
-                .Split('/', StringSplitOptions.RemoveEmptyEntries)
-                .Where(s => !(s.StartsWith("index.") || s.StartsWith("http")))
-                .ToArray();
+            var urlParts = GetUrlParts(url);
             
             if (urlParts.Length == 0)
                 return string.Empty;
 
-            var breadcrumbs = new Queue<string>();
-            breadcrumbs.Enqueue("<a href=\"/\">HOME</a>");
-
             if (urlParts.Length == 1)
                 return "<span class=\"active\">HOME</span>";
 
+            var breadcrumbs = new Queue<string>();
+            breadcrumbs.Enqueue("<a href=\"/\">HOME</a>");
             var previousUrl = string.Empty;
+            string breadcrumbUrl;
 
-            for (var i = 1; i < urlParts.Length - 1; i++)
+            for (var i = 1; i < urlParts.Length - 1; i++, previousUrl = breadcrumbUrl)
             {
-                var breadcrumbUrl = string.IsNullOrEmpty(previousUrl)
+                breadcrumbUrl = string.IsNullOrEmpty(previousUrl)
                     ? urlParts[i]
                     : string.Join("/", new[]{previousUrl, urlParts[i]});
-                
+
                 var breadcrumb = $"<a href=\"/{breadcrumbUrl.ToLower()}/\">{GetBreadcrumbText(urlParts[i])}</a>";
+                
                 breadcrumbs.Enqueue(breadcrumb);
-                previousUrl = breadcrumbUrl;
             }
 
-            var lastBreadcrumbText = GetBreadcrumbText(string
-                    .Concat(urlParts.Last().TakeWhile(c => c != '.')));
+            var lastBreadcrumbLetters = urlParts
+                .Last()
+                .TakeWhile(c => c != '.');
+            
+            var lastBreadcrumbText = GetBreadcrumbText(string.Concat(lastBreadcrumbLetters));
             
             var last = $"<span class=\"active\">{lastBreadcrumbText}</span>";
             breadcrumbs.Enqueue(last);
@@ -59,11 +59,20 @@ namespace Codewars.Four.BreadcrumbGenerator
             return string.Join(separator, breadcrumbs);
         }
 
+        private static string[] GetUrlParts(string url)
+        {
+            var ignoreSymbols = new[] { '#', '?' };
+            
+            var clearUrl = string.Concat(url.TakeWhile(c => !ignoreSymbols.Contains(c)));
+            
+            return clearUrl
+                .Split('/', StringSplitOptions.RemoveEmptyEntries)
+                .Where(s => !(s.StartsWith("index.") || s.StartsWith("http")))
+                .ToArray();
+        }
+
         private static string GetBreadcrumbText(string text)
         {
-            var ignoreWords = new[]
-                { "the", "of", "in", "from", "by", "with", "and", "or", "for", "to", "at", "a" };
-
             var split = text.Split('-');
 
             string breadcrumbText;
@@ -73,7 +82,7 @@ namespace Codewars.Four.BreadcrumbGenerator
             else
             {
                 breadcrumbText = string.Concat(split
-                    .Where(str => !ignoreWords.Contains(str))
+                    .Where(str => !IgnoreWords.Contains(str))
                     .Select(str => str.First()));
             }
 

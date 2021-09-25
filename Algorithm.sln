@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BreadcrumbGenerator", "Code
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RailFenceCipher", "Codewars\RailFenceCipher\RailFenceCipher.csproj", "{A9D94DF0-4C4D-40F5-8F4A-10E3E0C3F56E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooleanOrder", "Codewars\BooleanOrder\BooleanOrder.csproj", "{C7309C5B-E904-409B-ACED-9E193B4847FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +163,10 @@ Global
 		{A9D94DF0-4C4D-40F5-8F4A-10E3E0C3F56E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9D94DF0-4C4D-40F5-8F4A-10E3E0C3F56E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9D94DF0-4C4D-40F5-8F4A-10E3E0C3F56E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7309C5B-E904-409B-ACED-9E193B4847FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7309C5B-E904-409B-ACED-9E193B4847FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7309C5B-E904-409B-ACED-9E193B4847FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7309C5B-E904-409B-ACED-9E193B4847FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -199,5 +205,6 @@ Global
 		{8F4431E0-C45B-4FFC-9644-C76F6A1B2016} = {2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}
 		{D836DDE1-06C0-4258-B3DF-501F6BF21216} = {2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}
 		{A9D94DF0-4C4D-40F5-8F4A-10E3E0C3F56E} = {A6524852-6E29-46A2-9861-27903912AAC2}
+		{C7309C5B-E904-409B-ACED-9E193B4847FF} = {A6524852-6E29-46A2-9861-27903912AAC2}
 	EndGlobalSection
 EndGlobal

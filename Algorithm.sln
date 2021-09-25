@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentsStripper", "Codewar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringsMix", "Codewars\StringsMix\StringsMix.csproj", "{739B2895-70D9-4319-B930-80D04DCAC50A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permutations", "Codewars\Permutations\Permutations.csproj", "{8F4431E0-C45B-4FFC-9644-C76F6A1B2016}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{739B2895-70D9-4319-B930-80D04DCAC50A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{739B2895-70D9-4319-B930-80D04DCAC50A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{739B2895-70D9-4319-B930-80D04DCAC50A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4431E0-C45B-4FFC-9644-C76F6A1B2016}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4431E0-C45B-4FFC-9644-C76F6A1B2016}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4431E0-C45B-4FFC-9644-C76F6A1B2016}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4431E0-C45B-4FFC-9644-C76F6A1B2016}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,5 +184,6 @@ Global
 		{6CBD766F-33E2-4A33-B828-1C4C300A9BA8} = {590873BA-32BF-42CD-9440-A500C5355E1F}
 		{7D617EEA-8BB1-452E-9F49-1DE2CA6C6D16} = {2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}
 		{739B2895-70D9-4319-B930-80D04DCAC50A} = {2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}
+		{8F4431E0-C45B-4FFC-9644-C76F6A1B2016} = {2E46F498-ED28-41D0-9CF7-F2D1A0E786FB}
 	EndGlobalSection
 EndGlobal

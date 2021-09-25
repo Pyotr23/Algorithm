@@ -14,7 +14,7 @@ namespace Codewars.Four.BreadcrumbGenerator
             text = "www.microsoft.com/docs/index.htm";
             text = "www.very-long-site_name-to-make-a-silly-yet-meaningful-example.com/users/giacomo-sorbi";
             text = "https://www.agcpartners.co.uk/index.html";
-            text = "https://www.linkedin.com/in/giacomosorbi";
+            text = "github.com/research-cauterization-the/";
             Console.WriteLine(GenerateBC(text, " : "));
         }
         
@@ -37,10 +37,17 @@ namespace Codewars.Four.BreadcrumbGenerator
             if (urlParts.Length == 1)
                 return "<span class=\"active\">HOME</span>";
 
+            var previousUrl = string.Empty;
+
             for (var i = 1; i < urlParts.Length - 1; i++)
             {
-                var breadcrumb = $"<a href=\"/{urlParts[i].ToLower()}/\">{GetBreadcrumbText(urlParts[i])}</a>";
+                var breadcrumbUrl = string.IsNullOrEmpty(previousUrl)
+                    ? urlParts[i]
+                    : string.Join("/", new[]{previousUrl, urlParts[i]});
+                
+                var breadcrumb = $"<a href=\"/{breadcrumbUrl.ToLower()}/\">{GetBreadcrumbText(urlParts[i])}</a>";
                 breadcrumbs.Enqueue(breadcrumb);
+                previousUrl = breadcrumbUrl;
             }
 
             var lastBreadcrumbText = GetBreadcrumbText(string
@@ -58,15 +65,18 @@ namespace Codewars.Four.BreadcrumbGenerator
                 { "the", "of", "in", "from", "by", "with", "and", "or", "for", "to", "at", "a" };
 
             var split = text.Split('-');
-            
-            var breadcrumbTextParts = split.Length == 1
-                ? split
-                : split.Where(str => !ignoreWords.Contains(str));
 
-            var breadcrumbText = text.Length <= 30
-                ? string.Join(' ', breadcrumbTextParts)
-                : string.Concat(breadcrumbTextParts.Select(c => c.First()));
-            
+            string breadcrumbText;
+
+            if (text.Length <= 30)
+                breadcrumbText = string.Join(' ', split);
+            else
+            {
+                breadcrumbText = string.Concat(split
+                    .Where(str => !ignoreWords.Contains(str))
+                    .Select(str => str.First()));
+            }
+
             return breadcrumbText.ToUpper();
         }
     }

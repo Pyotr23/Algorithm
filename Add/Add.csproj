@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Route256.OneStar.Add</AssemblyName>
+        <RootNamespace>Route256.OneStar.Add</RootNamespace>
+        <LangVersion>6</LangVersion>
+    </PropertyGroup>
+
+</Project>

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
 namespace Route256.OneStar.Add
 {
@@ -7,41 +6,30 @@ namespace Route256.OneStar.Add
     {
         static void Main(string[] args)
         {
-            // var setsCount = int.Parse(args[0]);
-            // if ()
-            Fill();
+            var setsCount = int.Parse(Console.ReadLine());
+            for (var i = 0; i < setsCount; i++)
+            {
+                var number = int.Parse(Console.ReadLine());
+                var res = IsPossibleToGet(number)
+                    ? "YES"
+                    : "NO";
+                Console.WriteLine(res);
+            }
         }
 
-        // private static bool IsPossibleToGet(int number)
-        // {
-        //     for (var i = 0; i < 10; i++)
-        //     {
-        //         
-        //     }
-        //     var res = number / 111;
-        //     if (res >= 10)
-        //         return true;
-        //     
-        //     if (res )
-        // } 
-
-        private static void Fill()
+        private static bool IsPossibleToGet(int number)
         {
-            var set = new HashSet<int>(1000);
-            for (var i = 0; i < 10; i++)
+            if (number >= 990)
+                return true;
+
+            for (var i = number / 111 * 111; i >= 0; i -= 111)
             {
-                var j = 0;
-                var res = 0;
-                while (res < 1000)
-                {
-                    res = i * 111 + j * 11;
-                    if (!set.Contains(res))
-                        set.Add(res);
-                    j++;
-                }
+                var current = (number - i) % 11;
+                if (current == 0)
+                    return true;
             }
 
-            var arr = set.OrderBy(x => x).ToArray();
+            return false;
         }
     }
 }

@@ -22,12 +22,8 @@ namespace Route256.ThreeStars.GaltonCasino
                         .Split(' ')
                         .Select(int.Parse).ToArray();
                 }
-
-                var result = (long)0;
-                GetSum(rows, ref result, 0, 0);
-
-
-
+                
+                var result = GetSum(rows, 0, 0, 0);
 
                 if (result == 0)
                 {
@@ -47,18 +43,22 @@ namespace Route256.ThreeStars.GaltonCasino
             }
         }
 
-        private static void GetSum(int[][] arrays, ref long sum, int i, int j)
+        private static long GetSum(int[][] arrays, long sum, int i, int j)
         {
             if (i == arrays.Length)
-                return;
+                return 0;
 
-            sum += arrays[i][j];
+            var curr = sum + arrays[i][j];
                 
             i++;
-            GetSum(arrays, ref sum, i, j); 
+            var left = GetSum(arrays, curr, i, j);
             
-            sum += arrays[i][j];
-            GetSum(arrays, ref sum, i, j++);
+            j++;
+            var right = GetSum(arrays, curr, i, j);
+
+            return left == 0
+                ? curr + left + right
+                : left + right;
         }
 
         private static bool IsOuterHex(int rowIndex, int hexIndex)

@@ -8,4 +8,10 @@
         <LangVersion>6</LangVersion>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Update="casino.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

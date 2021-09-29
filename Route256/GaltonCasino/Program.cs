@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace Route256.ThreeStars.GaltonCasino
@@ -7,16 +9,16 @@ namespace Route256.ThreeStars.GaltonCasino
     {
         static void Main(string[] args)
         {
-            var setCount = int.Parse(Console.ReadLine());
+            var queue = new Queue<string>(File.ReadAllLines("casino.txt"));
+            var setCount = int.Parse(queue.Dequeue());
             for (var i = 0; i < setCount; i++)
             {
-                var depth = int.Parse(Console.ReadLine());
+                var depth = int.Parse(queue.Dequeue());
                 var result = (long) 0;
                 for (var levelIndex = 0; levelIndex < depth; levelIndex++)
                 {
                     var count = (int)Math.Pow(2, depth - levelIndex - 1);
-                    result = Console
-                        .ReadLine()
+                    result = queue.Dequeue()
                         .Split(' ')
                         .Select((x, ind) => IsOuterHex(levelIndex, ind)
                             ? int.Parse(x) * count
@@ -48,15 +50,19 @@ namespace Route256.ThreeStars.GaltonCasino
                    || hexIndex == 0 
                    || hexIndex == rowIndex;
         }
-        
+
         private static long GetGreatestCommonDivisor(long a, long b)
         {
-            if (a == b)
-                return a;
+            while (true)
+            {
+                if (a == b) 
+                    return a;
 
-            var max = Math.Max(a, b);
-            var min = Math.Min(a, b);
-            return GetGreatestCommonDivisor(max - min, min);
+                var max = Math.Max(a, b);
+                var min = Math.Min(a, b);
+                a = max - min;
+                b = min;
+            }
         }
     }
 }

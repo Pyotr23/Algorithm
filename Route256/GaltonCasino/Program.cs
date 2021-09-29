@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Numerics;
 
 namespace Route256.ThreeStars.GaltonCasino
 {
@@ -11,31 +12,33 @@ namespace Route256.ThreeStars.GaltonCasino
             for (var i = 0; i < setCount; i++)
             {
                 var depth = int.Parse(Console.ReadLine());
-                var result = 0;
+                var result = new BigInteger(0);
                 for (var levelIndex = 0; levelIndex < depth; levelIndex++)
                 {
                     var count = (int)Math.Pow(2, depth - levelIndex - 1);
-                    result += Console
+                    result = Console
                         .ReadLine()
                         .Split(' ')
                         .Select((x, ind) => IsOuterHex(levelIndex, ind)
                             ? int.Parse(x) * count
                             : int.Parse(x) * count * 2)
-                        .Sum();
+                        .Aggregate(result, (current, value) => current + value);
                 }
 
-                if (result == 0)
+                if (result.IsZero)
                 {
                     Console.WriteLine("0 1");
                     continue;
                 }
-
+                
                 var pathCount = depth == 1
                     ? 1
                     : depth * 2 - 2;
-                var divisor = GetGreatestCommonDivisor(Math.Abs(result), pathCount);
+                var absResult = result > 0 ? result : result * -1;
+                var divisor = GetGreatestCommonDivisor(absResult, pathCount);
                 var nominator = result / divisor;
                 var denominator = pathCount / divisor;
+                
                 Console.WriteLine(nominator + " " + denominator);
             }
         }
@@ -47,13 +50,13 @@ namespace Route256.ThreeStars.GaltonCasino
                    || hexIndex == rowIndex;
         }
         
-        private static int GetGreatestCommonDivisor(int a, int b)
+        private static BigInteger GetGreatestCommonDivisor(BigInteger a, BigInteger b)
         {
             if (a == b)
                 return a;
 
-            var max = Math.Max(a, b);
-            var min = Math.Min(a, b);
+            var max = a > b ? a : b;
+            var min = a < b ? a : b;
             return GetGreatestCommonDivisor(max - min, min);
         }
     }

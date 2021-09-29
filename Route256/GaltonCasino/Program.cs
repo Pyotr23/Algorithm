@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Numerics;
 
 namespace Route256.ThreeStars.GaltonCasino
 {
@@ -12,7 +11,7 @@ namespace Route256.ThreeStars.GaltonCasino
             for (var i = 0; i < setCount; i++)
             {
                 var depth = int.Parse(Console.ReadLine());
-                var result = new BigInteger(0);
+                var result = (long) 0;
                 for (var levelIndex = 0; levelIndex < depth; levelIndex++)
                 {
                     var count = (int)Math.Pow(2, depth - levelIndex - 1);
@@ -25,7 +24,7 @@ namespace Route256.ThreeStars.GaltonCasino
                         .Aggregate(result, (current, value) => current + value);
                 }
 
-                if (result.IsZero)
+                if (result == 0)
                 {
                     Console.WriteLine("0 1");
                     continue;
@@ -34,8 +33,8 @@ namespace Route256.ThreeStars.GaltonCasino
                 var pathCount = depth == 1
                     ? 1
                     : depth * 2 - 2;
-                var absResult = result > 0 ? result : result * -1;
-                var divisor = GetGreatestCommonDivisor(absResult, pathCount);
+                
+                var divisor = GetGreatestCommonDivisor(Math.Abs(result), pathCount);
                 var nominator = result / divisor;
                 var denominator = pathCount / divisor;
                 
@@ -50,13 +49,13 @@ namespace Route256.ThreeStars.GaltonCasino
                    || hexIndex == rowIndex;
         }
         
-        private static BigInteger GetGreatestCommonDivisor(BigInteger a, BigInteger b)
+        private static long GetGreatestCommonDivisor(long a, long b)
         {
             if (a == b)
                 return a;
 
-            var max = a > b ? a : b;
-            var min = a < b ? a : b;
+            var max = Math.Max(a, b);
+            var min = Math.Min(a, b);
             return GetGreatestCommonDivisor(max - min, min);
         }
     }

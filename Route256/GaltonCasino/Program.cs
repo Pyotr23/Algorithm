@@ -12,19 +12,31 @@ namespace Route256.ThreeStars.GaltonCasino
             {
                 var depth = int.Parse(Console.ReadLine());
                 var result = 0;
-                for (var j = 0; j < depth; j++)
+                for (var levelIndex = 0; levelIndex < depth; levelIndex++)
                 {
-                    var count = (int)Math.Pow(2, depth - j - 1);
+                    var count = (int)Math.Pow(2, depth - levelIndex - 1);
                     result += Console
                         .ReadLine()
                         .Split(' ')
-                        .Select((x, ind) => IsOuterHex(j, ind)
+                        .Select((x, ind) => IsOuterHex(levelIndex, ind)
                             ? int.Parse(x) * count
                             : int.Parse(x) * count * 2)
                         .Sum();
                 }
 
-                Console.WriteLine(result);
+                if (result == 0)
+                {
+                    Console.WriteLine("0 1");
+                    continue;
+                }
+
+                var pathCount = depth == 1
+                    ? 1
+                    : depth * 2 - 2;
+                var divisor = GetGreatestCommonDivisor(Math.Abs(result), pathCount);
+                var nominator = result / divisor;
+                var denominator = pathCount / divisor;
+                Console.WriteLine(nominator + " " + denominator);
             }
         }
 
@@ -33,6 +45,16 @@ namespace Route256.ThreeStars.GaltonCasino
             return rowIndex < 2 
                    || hexIndex == 0 
                    || hexIndex == rowIndex;
+        }
+        
+        private static int GetGreatestCommonDivisor(int a, int b)
+        {
+            if (a == b)
+                return a;
+
+            var max = Math.Max(a, b);
+            var min = Math.Min(a, b);
+            return GetGreatestCommonDivisor(max - min, min);
         }
     }
 }

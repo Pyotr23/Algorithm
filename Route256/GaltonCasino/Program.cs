@@ -14,17 +14,20 @@ namespace Route256.ThreeStars.GaltonCasino
             for (var i = 0; i < setCount; i++)
             {
                 var depth = int.Parse(queue.Dequeue());
-                var result = (long) 0;
-                for (var levelIndex = 0; levelIndex < depth; levelIndex++)
+                var rows = new int[depth][];
+                for (var rowIndex = 0; rowIndex < depth; rowIndex++)
                 {
-                    var count = (int)Math.Pow(2, depth - levelIndex - 1);
-                    result = queue.Dequeue()
+                    rows[rowIndex] = queue
+                        .Dequeue()
                         .Split(' ')
-                        .Select((x, ind) => IsOuterHex(levelIndex, ind)
-                            ? int.Parse(x) * count
-                            : int.Parse(x) * count * 2)
-                        .Aggregate(result, (current, value) => current + value);
+                        .Select(int.Parse).ToArray();
                 }
+
+                var result = (long)0;
+                GetSum(rows, ref result, 0, 0);
+
+
+
 
                 if (result == 0)
                 {
@@ -42,6 +45,20 @@ namespace Route256.ThreeStars.GaltonCasino
                 
                 Console.WriteLine(nominator + " " + denominator);
             }
+        }
+
+        private static void GetSum(int[][] arrays, ref long sum, int i, int j)
+        {
+            if (i == arrays.Length)
+                return;
+
+            sum += arrays[i][j];
+                
+            i++;
+            GetSum(arrays, ref sum, i, j); 
+            
+            sum += arrays[i][j];
+            GetSum(arrays, ref sum, i, j++);
         }
 
         private static bool IsOuterHex(int rowIndex, int hexIndex)

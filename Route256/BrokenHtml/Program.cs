@@ -8,15 +8,12 @@ namespace Route256.FourStar.BrokenHtml
     {
         static void Main(string[] args)
         {
-            const string openedTagPattern = "^<[^/][A-Z]*>$";
-            var openedTagRegex = new Regex(openedTagPattern);
-            
-            const string closedTagPattern ="^</[A-Z]*>$";
-            var closedTagRegex = new Regex(closedTagPattern);
-
             // var queue = new Queue<string>(new string[] { "1", "4", "<X>", "<Y>", "</Y>", "</X>" });
             // var queue = new Queue<string>(new string[] { "1", "5", "<HTML>", "<biba>", "</BIBA>", "</KUKA>", "</HTML>" });
-            var queue = new Queue<string>(new string[] { "1", "6", "<HTML>", "<TAG>", "<button>", "</BUTTON>", "<TAG>", "</HTML>" });
+            // var queue = new Queue<string>(new string[] { "1", "6", "<HTML>", "<TAG>", "<button>", "</BUTTON>", "<TAG>", "</HTML>" });
+            // var queue = new Queue<string>(new string[] { "1", "1", "<HTML>" });
+            // var queue = new Queue<string>(new string[] { "1", "5", "</KUKA>", "<HTML>", "<biba>", "</BIBA>", "</HTML>" });
+            var queue = new Queue<string>(new string[] { "1", "5", "<X>", "<Y>", "</X>", "</Y>", "</X>" });
 
             var setCount = int.Parse(queue.Dequeue());
             for (var i = 0; i < setCount; i++)
@@ -27,46 +24,42 @@ namespace Route256.FourStar.BrokenHtml
                 var errorTag = string.Empty;
                 for (var j = 0; j < tagCount; j++)
                 {
+                    if (errorCount > 1)
+                        break;
+                    
                     var tag = queue.Dequeue().ToUpper();
 
-                    if (openedTagRegex.IsMatch(tag))
+                    if (!tag.StartsWith("</"))
                     {
                         stack.Push(tag);
                         continue;
                     }
 
-                    if (!closedTagRegex.IsMatch(tag))
-                    {
-                        if (++errorCount > 1)
-                            break;
-                        continue;
-                    }
-
-                    var lastOpenedTag = stack.Pop();
-                    if (lastOpenedTag.Insert(1, "/") == tag)
-                        continue;
-
-                    if (++errorCount > 1)
-                        break;
-
-                    string penultimateOpenedTag;
-                    if (!stack.TryPeek(out penultimateOpenedTag))
+                    string lastTag;
+                    if (!stack.TryPeek(out lastTag))
                     {
                         errorTag = tag;
-                        stack.Push(lastOpenedTag);
+                        errorCount++;
                         continue;
                     }
                     
-                        
+                    stack.Pop();
 
-                    if (penultimateOpenedTag.Insert(1, "/") == tag)
+                    if (lastTag == tag.Remove(1, 1))
+                        continue;
+
+                    errorCount++;
+                    
+                    string penultimateOpenedTag;
+                    if (stack.TryPeek(out penultimateOpenedTag) && penultimateOpenedTag == tag.Remove(1, 1))
                     {
-                        errorTag = penultimateOpenedTag;
+                        errorTag = lastTag;
+                        stack.Pop();
                         continue;
                     }
-
-                    errorTag = lastOpenedTag;
-                    stack.Push(lastOpenedTag);
+                    
+                    stack.Push(lastTag);
+                    errorTag = tag;
                 }
 
                 if (stack.Count == 0 && errorCount == 0)
@@ -75,8 +68,10 @@ namespace Route256.FourStar.BrokenHtml
                     continue;
                 }
                  
-                if (stack.Count == 0 && errorCount == 1)
+                if (stack.Count + errorCount == 1)
                 {
+                    if (stack.Count == 1)
+                        errorTag = stack.Pop();
                     Console.WriteLine("ALMOST " + errorTag);
                     continue;
                 }

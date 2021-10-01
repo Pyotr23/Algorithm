@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Route256.FourStar.BrokenHtml</AssemblyName>
+        <RootNamespace>Route256.FourStar.BrokenHtml</RootNamespace>
+        <LangVersion>6</LangVersion>
+    </PropertyGroup>
+
+</Project>
